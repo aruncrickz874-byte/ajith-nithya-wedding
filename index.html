@@ -18,7 +18,20 @@
   html{scroll-behavior:smooth}
   body{margin:0;background:var(--white);color:var(--ink);font-family:Georgia,"Times New Roman",serif;position:relative;overflow-x:hidden}
   
-  .page{min-height:100vh;padding:18px;background:radial-gradient(ellipse at top,rgba(94,74,138,.20),transparent 48%),var(--white);position:relative;z-index:1}
+  /* --- FIXED BACKGROUND IMAGE --- */
+  .page{
+    min-height:100vh;
+    padding:18px;
+    /* Make sure your background photo is named background.jpeg */
+    background-image: 
+      linear-gradient(rgba(239, 234, 247, 0.85), rgba(255, 255, 255, 0.85)), 
+      url('background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* This makes the photo reveal part-by-part as you scroll */
+    position:relative;
+    z-index:1;
+  }
 
   /* Floating hearts */
   .hearts-overlay{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}
@@ -30,11 +43,11 @@
   }
 
   /* Frame */
-  .frame{max-width:760px;margin:0 auto;border:1px solid var(--lav);outline:1px solid rgba(94,74,138,.45);outline-offset:5px;position:relative;background:var(--white);min-height:70vh;display:flex;flex-direction:column;transition:background .6s ease}
+  .frame{max-width:760px;margin:0 auto;border:1px solid var(--lav);outline:1px solid rgba(94,74,138,.45);outline-offset:5px;position:relative;background:transparent;min-height:70vh;display:flex;flex-direction:column;transition:background .6s ease}
   .frame:before,.frame:after{content:"❧";position:absolute;color:var(--lav);font-size:52px;opacity:.85;top:10px;z-index:2;pointer-events:none}
   .frame:before{left:14px}.frame:after{right:14px;transform:scaleX(-1)}
 
-  header{text-align:center;background:var(--lavdeep);color:var(--white);padding:54px 22px 46px;position:relative;z-index:1}
+  header{text-align:center;background:var(--lavdeep);color:var(--white);padding:54px 22px 46px;position:relative;z-index:1;border-bottom:2px solid var(--lav)}
   .eyebrow{letter-spacing:.24em;text-transform:uppercase;font:11px Arial,sans-serif;color:#e0d8f0}
   .lamp{font-size:32px;margin:18px 0 10px;color:#ffffff}
   h1{font-size:clamp(43px,9vw,76px);font-weight:normal;line-height:1.02;margin:12px 0;color:var(--white)}
@@ -49,51 +62,82 @@
     padding: 34px 22px 38px;
     text-align: center;
     border-bottom: 2px dashed var(--lav);
-    background: var(--white);
-    animation: slideDownFade .8s cubic-bezier(.22,.61,.36,1) both;
+    background: transparent; /* Transparent so background image shows */
   }
-  .page-slide.active { display: block; }
   
-  @keyframes slideDownFade {
-    0% { opacity: 0; transform: translateY(-30px); filter: blur(8px); }
-    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  .page-slide.active {
+    display: block;
+    animation: pageFlashBlur 1.2s cubic-bezier(.22,.61,.36,1) both;
+  }
+  
+  @keyframes pageFlashBlur {
+    0% { 
+      opacity: 0; 
+      transform: translateY(-40px) scale(0.95); 
+      filter: blur(30px) brightness(2.5);
+      box-shadow: 0 0 50px 20px rgba(255,255,255,0.8);
+    }
+    40% {
+      filter: blur(15px) brightness(1.5);
+      box-shadow: 0 0 30px 10px rgba(255,255,255,0.5);
+    }
+    100% { 
+      opacity: 1; 
+      transform: translateY(0) scale(1); 
+      filter: blur(0) brightness(1); 
+      box-shadow: none;
+    }
   }
 
   @media(min-width:600px){ .page-slide{padding:42px 42px 48px} header{padding-top:64px;padding-bottom:54px} }
 
-  /* Alternate Backgrounds */
-  #page1 { background: var(--white); }
-  #page2 { background: var(--lavlight); }
-  #page3 { background: var(--white); }
-  #page4 { background: var(--lavlight); }
-  #page5 { background: var(--white); }
-  #page6 { background: var(--lavlight); }
-  #page7 { background: var(--white); }
-  #page8 { background: var(--lavlight); border-bottom: none; }
-
   /* Text Elements */
-  .ornament{color:var(--lav);letter-spacing:.45em;font-size:17px}
-  .invite{max-width:500px;margin:14px auto 26px;font-size:18px;line-height:1.7}
-  .day{font:12px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .ornament{color:var(--lavdeep);letter-spacing:.45em;font-size:17px}
+  .invite{max-width:500px;margin:14px auto 26px;font-size:18px;line-height:1.7;font-weight:bold}
+  .day{font:12px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--lavdeep);font-weight:bold;}
   
   .venue{margin:28px auto 22px;padding:20px 12px;border-top:1px solid var(--lav);border-bottom:1px solid var(--lav);max-width:470px}
   .venue h2{font-weight:normal;color:var(--lavdeep);font-size:27px;margin:8px 0}
-  .venue p{margin:5px 0;color:var(--muted);font:14px Arial,sans-serif;line-height:1.5}
+  .venue p{margin:5px 0;color:var(--ink);font:14px Arial,sans-serif;line-height:1.5;font-weight:bold;}
   
   .countdown{margin:26px auto 28px}
   .countdown h3{font-weight:normal;color:var(--lavdeep);font-size:25px;margin:0 0 14px}
   .timer{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-  .timebox{min-width:68px;padding:12px 8px;background:var(--white);border:1px solid var(--lav)}
+  .timebox{min-width:68px;padding:12px 8px;background:var(--white);border:1px solid var(--lav); box-shadow: 0 4px 10px rgba(59,45,92,.1); border-radius: 8px;}
   .timebox strong{display:block;font-size:25px;color:var(--lavdeep);font-weight:normal}
   .timebox span{font:10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
   
-  .actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px 0}
-  .btn{display:inline-block;padding:13px 18px;border:1px solid var(--lavdeep);background:var(--lavdeep);color:var(--white);text-decoration:none;font:12px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s}
+  .actions{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;margin:22px 0}
+  .btn{display:inline-block;padding:13px 18px;border:1px solid var(--lavdeep);background:var(--lavdeep);color:var(--white);text-decoration:none;font:12px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s; box-shadow: 0 4px 10px rgba(59,45,92,.2); border-radius: 4px;}
   .btn:hover{background:var(--lav);transform:translateY(-1px)}
-  .btn.secondary{background:var(--white);color:var(--lavdeep)}
-  .btn.secondary:hover{background:var(--lavlight)}
   
-  .note{font:12px/1.5 Arial,sans-serif;color:var(--muted);text-align:center;margin:12px 0 0}
+  /* Symbolic Map Button */
+  .btn-map {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1px solid var(--lavdeep);
+    color: var(--lavdeep);
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(59,45,92,.15);
+    transition: all 0.3s ease;
+  }
+  .btn-map:hover {
+    background: var(--lavlight);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59,45,92,.25);
+  }
+  .btn-map svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
+
+  .note{font:12px/1.5 Arial,sans-serif;color:var(--lavdeep);text-align:center;margin:12px 0 0;font-weight:bold;}
 
   footer{text-align:center;background:var(--lavdeep);color:#e0d8f0;padding:22px 18px;font:11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;position:relative;z-index:1}
   .tiny{font-size:10px;letter-spacing:.04em;text-transform:none;opacity:.9;margin-top:8px;color:#e0d8f0}
@@ -115,11 +159,10 @@
   }
   .photo-gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 columns */
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
     margin-top: 20px;
   }
-  /* Make the first image full width to look like a mosaic */
   .photo-gallery img:first-child {
     grid-column: 1 / -1;
     height: 220px;
@@ -129,13 +172,13 @@
     height: 160px;
     object-fit: cover;
     border-radius: 12px;
-    border: 2px solid var(--white);
-    box-shadow: 0 4px 10px rgba(59,45,92,.15);
+    border: 3px solid var(--white);
+    box-shadow: 0 6px 15px rgba(59,45,92,.25);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .photo-gallery img:hover {
     transform: scale(1.03);
-    box-shadow: 0 8px 20px rgba(59,45,92,.3);
+    box-shadow: 0 8px 20px rgba(59,45,92,.4);
   }
 
   @media(min-width: 600px) {
@@ -146,8 +189,8 @@
 
   .welcome-screen{text-align:center}
   .welcome-screen .invite{font-size:17px;margin-bottom:22px}
-  .welcome-screen .welcome-title{font-size:clamp(26px,5vw,36px);color:var(--lavdeep);margin:18px 0 10px;font-weight:normal}
-  .welcome-screen .welcome-sub{font:13px/1.6 Arial,sans-serif;color:var(--muted);max-width:380px;margin:0 auto 24px}
+  .welcome-screen .welcome-title{font-size:clamp(26px,5vw,36px);color:var(--lavdeep);margin:18px 0 10px;font-weight:bold}
+  .welcome-screen .welcome-sub{font:14px/1.6 Arial,sans-serif;color:var(--ink);max-width:380px;margin:0 auto 24px;font-weight:bold;}
   .welcome-screen .btn{font-size:14px;padding:16px 30px;letter-spacing:.12em}
 </style>
 </head>
@@ -189,13 +232,13 @@
         <div class="ornament">🔱</div>
         <h2 style="font-weight:normal;color:var(--lavdeep);font-size:27px;margin:10px 0 6px">Muhurtham</h2>
         <p class="day" style="margin-top:0">Pattarkonam Shiva Temple</p>
-        <p style="color:var(--muted);font:14px Arial,sans-serif;margin:6px 0 0">Ananganadi, Palakkad, Kerala</p>
+        <p style="color:var(--ink);font:14px Arial,sans-serif;margin:6px 0 0;font-weight:bold;">Ananganadi, Palakkad, Kerala</p>
         <p style="color:var(--lavdeep);font-size:18px;margin:18px 0 6px"><strong>10:00 AM – 11:00 AM</strong></p>
         <p class="day" style="margin-bottom:20px">7 February 2027 · Sunday</p>
         <div class="actions">
-          <a class="btn secondary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pattarkonam+Shiva+Temple+Ananganadi+Palakkad+Kerala">Get Temple Directions</a>
-        </div>
-        <div class="actions">
+          <a class="btn-map" target="_blank" rel="noopener" title="Get Temple Directions" href="https://www.google.com/maps/search/?api=1&query=Pattarkonam+Shiva+Temple+Ananganadi+Palakkad+Kerala">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </a>
           <button class="btn" type="button" data-next="page3">Wedding Function →</button>
         </div>
       </div>
@@ -205,12 +248,12 @@
         <div class="ornament">✦</div>
         <h2 style="font-weight:normal;color:var(--lavdeep);font-size:27px;margin:10px 0 6px">Wedding Function</h2>
         <p class="day" style="margin-top:0">DS Auditorium, Kothakurussi</p>
-        <p style="color:var(--muted);font:14px Arial,sans-serif;margin:6px 0 0">Palakkad, Kerala</p>
+        <p style="color:var(--ink);font:14px Arial,sans-serif;margin:6px 0 0;font-weight:bold;">Palakkad, Kerala</p>
         <p class="day" style="margin:16px 0 20px">7 February 2027 · Sunday</p>
         <div class="actions">
-          <a class="btn secondary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=DS+Auditorium+Kothakurussi+Palakkad+Kerala">Get Function Directions</a>
-        </div>
-        <div class="actions">
+          <a class="btn-map" target="_blank" rel="noopener" title="Get Function Directions" href="https://www.google.com/maps/search/?api=1&query=DS+Auditorium+Kothakurussi+Palakkad+Kerala">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </a>
           <button class="btn" type="button" data-next="page4">Reception Details →</button>
         </div>
       </div>
@@ -220,13 +263,13 @@
         <div class="ornament">⌖</div>
         <h2 style="font-weight:normal;color:var(--lavdeep);font-size:27px;margin:10px 0 6px">Wedding Reception</h2>
         <p class="day" style="margin-top:0">Kizhakkekkara Auditorium</p>
-        <p style="color:var(--muted);font:14px Arial,sans-serif;margin:6px 0 0">Mangalamkunnu, Palakkad, Kerala</p>
+        <p style="color:var(--ink);font:14px Arial,sans-serif;margin:6px 0 0;font-weight:bold;">Mangalamkunnu, Palakkad, Kerala</p>
         <p style="color:var(--lavdeep);font-size:18px;margin:18px 0 6px"><strong>5:00 PM – 8:00 PM</strong></p>
         <p class="day" style="margin-bottom:20px">7 February 2027 · Sunday</p>
         <div class="actions">
-          <a class="btn secondary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kizhakkekkara+Auditorium+Mangalamkunnu+Palakkad+Kerala">Get Reception Directions</a>
-        </div>
-        <div class="actions">
+          <a class="btn-map" target="_blank" rel="noopener" title="Get Reception Directions" href="https://www.google.com/maps/search/?api=1&query=Kizhakkekkara+Auditorium+Mangalamkunnu+Palakkad+Kerala">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </a>
           <button class="btn" type="button" data-next="page5">See Countdown →</button>
         </div>
       </div>
@@ -246,7 +289,7 @@
         </div>
       </div>
 
-      <!-- PAGE 6 (Aesthetic Photo Gallery) -->
+      <!-- PAGE 6 -->
       <div class="page-slide" id="page6">
         <section class="photo-gallery-section">
           <div class="ornament">📸</div>
@@ -270,7 +313,7 @@
       <div class="page-slide" id="page7">
         <div class="ornament">✦ ❧ ✦</div>
         <h3 style="font-weight:normal;color:var(--lavdeep);font-size:25px;margin:12px 0">A little surprise for you</h3>
-        <p style="font:14px/1.6 Arial,sans-serif;color:var(--muted);margin:0 auto 16px;max-width:360px">Scratch the card below to reveal your invitation.</p>
+        <p style="font:14px/1.6 Arial,sans-serif;color:var(--ink);margin:0 auto 16px;max-width:360px;font-weight:bold;">Scratch the card below to reveal your invitation.</p>
         <div id="scratchCard" style="position:relative;max-width:420px;height:190px;margin:0 auto;border:1px solid var(--lavdeep);overflow:hidden;background:var(--lavdeep);touch-action:none">
           <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;color:var(--white);text-align:center;background:radial-gradient(circle at center, var(--lav), var(--lavdeep))">
             <div style="font-size:22px;color:var(--white);margin-bottom:8px">🪔 ✦ 🪔</div>
@@ -355,9 +398,7 @@
       musicToggle.textContent = '🔇';
       musicToggle.title = 'Pause background music';
       playing = true;
-    }).catch(() => {
-      // Autoplay blocked
-    });
+    }).catch(() => {});
   }
 
   musicToggle.addEventListener('click', function(){
@@ -373,12 +414,12 @@
 
   // ---------- Stacking Page Navigation ----------
   document.getElementById('startBtn').addEventListener('click', function(){ 
-    playMusic(); // Trigger music on user gesture!
+    playMusic(); 
     const p2 = document.getElementById('page2');
     p2.classList.add('active');
     setTimeout(() => {
       window.scrollBy({ top: p2.offsetHeight, behavior: 'smooth' });
-    }, 100);
+    }, 150);
   });
 
   document.querySelectorAll('[data-next]').forEach(btn => {
@@ -389,7 +430,7 @@
         target.classList.add('active');
         setTimeout(() => {
           window.scrollBy({ top: target.offsetHeight, behavior: 'smooth' });
-        }, 100);
+        }, 150);
       }
     });
   });

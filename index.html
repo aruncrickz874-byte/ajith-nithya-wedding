@@ -3,56 +3,127 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#173c2c">
+<meta name="theme-color" content="#3b2d5c">
 <title>Ajith & Nithya | Wedding Invitation</title>
 <style>
-  :root{--green:#173c2c;--green2:#28543d;--gold:#b99a55;--cream:#fbf6e9;--ink:#26352b;--muted:#6f786d}
+  :root{
+    --lav:#5e4a8a;
+    --lavdeep:#3b2d5c;
+    --lavlight:#efeaf7;
+    --white:#ffffff;
+    --ink:#2e2348;
+    --muted:#6a5a8a;
+  }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
-  .page{min-height:100vh;padding:18px;background:
-    radial-gradient(ellipse at top,rgba(185,154,85,.13),transparent 48%),
-    var(--cream)}
-  .frame{max-width:760px;margin:0 auto;border:1px solid var(--gold);outline:1px solid rgba(185,154,85,.35);outline-offset:5px;position:relative;overflow:hidden}
-  .frame:before,.frame:after{content:"❧";position:absolute;color:var(--gold);font-size:52px;opacity:.75;top:10px}
+  body{margin:0;background:var(--white);color:var(--ink);font-family:Georgia,"Times New Roman",serif;position:relative;overflow-x:hidden}
+  .page{min-height:100vh;padding:18px;background:radial-gradient(ellipse at top,rgba(94,74,138,.20),transparent 48%),var(--white);position:relative;z-index:1}
+
+  .hearts-overlay{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}
+  .hearts-overlay span{position:absolute;top:-12vh;color:#e63946;opacity:0;animation-name:heartFall;animation-timing-function:linear;animation-iteration-count:infinite;will-change:transform,opacity;user-select:none;text-shadow:0 0 6px rgba(230,57,70,.30)}
+  @keyframes heartFall{
+    0%{ transform:translateY(-12vh) rotate(0deg) scale(.7); opacity:0; }
+    8%{ opacity:.45; } 50%{ opacity:.50; } 90%{ opacity:.25; }
+    100%{ transform:translateY(112vh) rotate(360deg) scale(1); opacity:0; }
+  }
+
+  .frame{max-width:760px;margin:0 auto;border:1px solid var(--lav);outline:1px solid rgba(94,74,138,.45);outline-offset:5px;position:relative;overflow:hidden;background:var(--white);min-height:70vh;display:flex;flex-direction:column;transition:background .6s ease}
+  .frame:before,.frame:after{content:"❧";position:absolute;color:var(--lav);font-size:52px;opacity:.85;top:10px;z-index:2}
   .frame:before{left:14px}.frame:after{right:14px;transform:scaleX(-1)}
-  header{text-align:center;background:var(--green);color:var(--cream);padding:54px 22px 46px;position:relative}
-  .eyebrow{letter-spacing:.24em;text-transform:uppercase;font:11px Arial,sans-serif;color:#e2ce98}
-  .lamp{font-size:32px;margin:18px 0 10px;color:#e0c37c}
-  h1{font-size:clamp(43px,9vw,76px);font-weight:normal;line-height:1.02;margin:12px 0;color:#f9edce}
-  .amp{font-style:italic;color:#d6b86e;font-size:.72em}
-  .subtitle{font:12px Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase;margin-top:20px;color:#e8dcc0}
-  main{padding:34px 22px 38px;text-align:center}
-  .ornament{color:var(--gold);letter-spacing:.45em;font-size:17px}
+
+  header{text-align:center;background:var(--lavdeep);color:var(--white);padding:54px 22px 46px;position:relative;z-index:1}
+  .eyebrow{letter-spacing:.24em;text-transform:uppercase;font:11px Arial,sans-serif;color:#e0d8f0}
+  .lamp{font-size:32px;margin:18px 0 10px;color:#ffffff}
+  h1{font-size:clamp(43px,9vw,76px);font-weight:normal;line-height:1.02;margin:12px 0;color:var(--white)}
+  .amp{font-style:italic;color:#d6c8f0;font-size:.72em}
+  .subtitle{font:12px Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase;margin-top:20px;color:#e0d8f0}
+
+  main{padding:34px 22px 38px;text-align:center;position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;transition:background .6s ease;background:var(--white)}
+  .ornament{color:var(--lav);letter-spacing:.45em;font-size:17px}
   .invite{max-width:500px;margin:14px auto 26px;font-size:18px;line-height:1.7}
-  .date{font-size:clamp(24px,5vw,34px);color:var(--green);margin:18px 0 8px}
+  .date{font-size:clamp(24px,5vw,34px);color:var(--lavdeep);margin:18px 0 8px}
   .day{font:12px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-  .venue{margin:28px auto 22px;padding:20px 12px;border-top:1px solid #d9c99f;border-bottom:1px solid #d9c99f;max-width:470px}
-  .venue h2{font-weight:normal;color:var(--green);font-size:27px;margin:8px 0}
+  .venue{margin:28px auto 22px;padding:20px 12px;border-top:1px solid var(--lav);border-bottom:1px solid var(--lav);max-width:470px}
+  .venue h2{font-weight:normal;color:var(--lavdeep);font-size:27px;margin:8px 0}
   .venue p{margin:5px 0;color:var(--muted);font:14px Arial,sans-serif;line-height:1.5}
   .countdown{margin:26px auto 28px}
-  .countdown h3,.rsvp h3{font-weight:normal;color:var(--green);font-size:25px;margin:0 0 14px}
+  .countdown h3{font-weight:normal;color:var(--lavdeep);font-size:25px;margin:0 0 14px}
   .timer{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-  .timebox{min-width:68px;padding:12px 8px;background:#f3ead5;border:1px solid #e1d2aa}
-  .timebox strong{display:block;font-size:25px;color:var(--green);font-weight:normal}
+  .timebox{min-width:68px;padding:12px 8px;background:var(--lavlight);border:1px solid var(--lav)}
+  .timebox strong{display:block;font-size:25px;color:var(--lavdeep);font-weight:normal}
   .timebox span{font:10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
   .actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px 0}
-  .btn{display:inline-block;padding:13px 18px;border:1px solid var(--green);background:var(--green);color:white;text-decoration:none;font:12px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
-  .btn.secondary{background:transparent;color:var(--green)}
-  .rsvp{max-width:500px;margin:34px auto 0;text-align:left;background:#fffaf0;border:1px solid #e1d2aa;padding:22px}
-  .rsvp h3{text-align:center}
-  label{display:block;font:12px Arial,sans-serif;color:var(--green);margin:13px 0 6px}
-  input,select,textarea{width:100%;padding:12px;border:1px solid #d6c9a8;background:#fffdf8;font:15px Arial,sans-serif;color:var(--ink);border-radius:0}
-  .rsvp .btn{width:100%;margin-top:16px}
+  .btn{display:inline-block;padding:13px 18px;border:1px solid var(--lavdeep);background:var(--lavdeep);color:var(--white);text-decoration:none;font:12px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s}
+  .btn:hover{background:var(--lav);transform:translateY(-1px)}
+  .btn.secondary{background:var(--white);color:var(--lavdeep)}
+  .btn.secondary:hover{background:var(--lavlight)}
   .note{font:12px/1.5 Arial,sans-serif;color:var(--muted);text-align:center;margin:12px 0 0}
-  footer{text-align:center;background:var(--green);color:#e8dcc0;padding:22px 18px;font:11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
-  .tiny{font-size:10px;letter-spacing:.04em;text-transform:none;opacity:.8;margin-top:8px}
+
+  footer{text-align:center;background:var(--lavdeep);color:#e0d8f0;padding:22px 18px;font:11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;position:relative;z-index:1}
+  .tiny{font-size:10px;letter-spacing:.04em;text-transform:none;opacity:.9;margin-top:8px;color:#e0d8f0}
+
   @media(min-width:600px){main{padding:42px 42px 48px}header{padding-top:64px;padding-bottom:54px}}
+
+  @keyframes softPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+  .lamp{animation:softPulse 3.5s ease-in-out infinite;display:inline-block}
+  @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+  .date{background:linear-gradient(90deg,var(--lavdeep) 20%,#9d88c8 50%,var(--lavdeep) 80%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 6s linear infinite}
+  @keyframes gentleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  .ornament{animation:gentleFloat 4s ease-in-out infinite;display:inline-block}
+
+  .music-toggle{position:fixed;bottom:18px;right:18px;z-index:999;width:46px;height:46px;border-radius:50%;border:1px solid var(--lavdeep);background:var(--white);color:var(--lavdeep);font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(59,45,92,.40);transition:transform .2s,background .2s;display:flex;align-items:center;justify-content:center}
+  .music-toggle:hover{transform:scale(1.08);background:var(--lavlight)}
+
+  .photo-gallery-section{max-width:500px;margin:30px auto 0;padding:22px;background:var(--white);border:1px solid var(--lav);text-align:center}
+  .photo-gallery-section h3{font-weight:normal;color:var(--lavdeep);font-size:25px;margin:0 0 10px}
+  .photo-gallery{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+  .photo-gallery img{width:130px;height:130px;object-fit:cover;border:1px solid var(--lavdeep);border-radius:4px;transition:transform .3s ease}
+  .photo-gallery img:hover{transform:scale(1.05)}
+  .upload-btn-row{margin-top:14px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+
+  .page-slide{display:none}
+  .page-slide.active{display:block;animation:blurIn .6s cubic-bezier(.22,.61,.36,1) both}
+  @keyframes blurIn{
+    0%{opacity:0;transform:translateY(30px) scale(.98);filter:blur(8px)}
+    60%{filter:blur(2px)}
+    100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+  }
+  @keyframes blurOut{
+    0%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+    100%{opacity:0;transform:translateY(-20px) scale(.98);filter:blur(8px)}
+  }
+
+  .frame.bg-page1{background:var(--white)}
+  .frame.bg-page2{background:var(--lavlight)}
+  .frame.bg-page3{background:var(--white)}
+  .frame.bg-page4{background:var(--lavlight)}
+  .frame.bg-page5{background:var(--white)}
+  .frame.bg-page6{background:var(--lavlight)}
+  .frame.bg-page7{background:var(--white)}
+  .frame.bg-page8{background:var(--lavlight)}
+
+  main.bg-page1{background:var(--white)}
+  main.bg-page2{background:var(--lavlight)}
+  main.bg-page3{background:var(--white)}
+  main.bg-page4{background:var(--lavlight)}
+  main.bg-page5{background:var(--white)}
+  main.bg-page6{background:var(--lavlight)}
+  main.bg-page7{background:var(--white)}
+  main.bg-page8{background:var(--lavlight)}
+
+  .welcome-screen{text-align:center;padding:40px 22px 30px}
+  .welcome-screen .invite{font-size:17px;margin-bottom:22px}
+  .welcome-screen .welcome-title{font-size:clamp(26px,5vw,36px);color:var(--lavdeep);margin:18px 0 10px;font-weight:normal}
+  .welcome-screen .welcome-sub{font:13px/1.6 Arial,sans-serif;color:var(--muted);max-width:380px;margin:0 auto 24px}
+  .welcome-screen .btn{font-size:14px;padding:16px 30px;letter-spacing:.12em}
 </style>
 </head>
 <body>
+
+<div class="hearts-overlay" id="heartsOverlay" aria-hidden="true"></div>
+
 <div class="page">
-  <div class="frame">
+  <div class="frame" id="mainFrame">
     <header>
       <div class="eyebrow">With the blessings of our families</div>
       <div class="lamp" aria-hidden="true">🪔</div>
@@ -60,127 +131,290 @@
       <h1>Ajith <span class="amp">&</span><br>Nithya</h1>
       <div class="subtitle">Wedding Invitation</div>
     </header>
-    <main>
-      <div class="ornament">✦ ❧ ✦</div>
-      <p class="invite">Together with our families, we warmly invite you to join us as we begin a beautiful new chapter of our lives.</p>
-      <div class="day">Save the date</div>
-      <div class="date">7 February 2027</div>
-      <div class="day">Sunday</div>
-      <section class="venue" aria-label="Wedding ceremony details">
-        <div class="ornament">✦</div>
-        <h2>Wedding Muhurtham</h2>
-        <p><strong>10:00 AM – 11:00 AM</strong></p>
-        <p>DS Auditorium, Kothakurussi</p>
-        <p>Palakkad, Kerala</p>
-        <div class="actions">
-          <a class="btn secondary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=DS+Auditorium+Kothakurussi+Palakkad+Kerala">Get Wedding Directions</a>
+    <main id="mainContent">
+
+      <!-- PAGE 1: WELCOME -->
+      <div class="page-slide active" id="page1">
+        <div class="welcome-screen">
+          <div class="ornament">✦ ❧ ✦</div>
+          <h2 class="welcome-title">You're Invited</h2>
+          <p class="welcome-sub">
+            Join us as Ajith &amp; Nithya begin their forever together.
+            A celebration of love, laughter, and new beginnings awaits.
+          </p>
+          <p class="invite">
+            Together with our families, we warmly invite you to join us
+            as we begin a beautiful new chapter of our lives.
+          </p>
+          <button class="btn" id="startBtn" type="button">Get the Invitation</button>
         </div>
-      </section>
-      <section class="venue" aria-label="Wedding reception details">
+      </div>
+
+      <!-- PAGE 2: MUHURTHAM -->
+      <div class="page-slide" id="page2">
+        <div class="ornament">🔱</div>
+        <h2 style="font-weight:normal;color:var(--lavdeep);font-size:27px;margin:10px 0 6px">Muhurtham</h2>
+        <p class="day" style="margin-top:0">Pattarkonam Shiva Temple</p>
+        <p style="color:var(--muted);font:14px Arial,sans-serif;margin:6px 0 0">Ananganadi, Palakkad, Kerala</p>
+        <p style="color:var(--lavdeep);font-size:18px;margin:18px 0 6px"><strong>10:00 AM – 11:00 AM</strong></p>
+        <p class="day" style="margin-bottom:20px">7 February 2027 · Sunday</p>
+        <div class="actions">
+          <a class="btn secondary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pattarkonam+Shiva+Temple+Ananganadi+Palakkad+Kerala">Get Temple Directions</a>
+        </div>
+        <div class="actions">
+          <button class="btn" type="button" data-next="page3">Wedding Function →</button>
+        </div>
+      </div>
+
+      <!-- PAGE 3: WEDDING FUNCTION -->
+      <div class="page-slide" id="page3">
+        <div class="ornament">✦</div>
+        <h2 style="font-weight:normal;color:var(--lavdeep);font-size:27px;margin:10px 0 6px">Wedding Function</h2>
+        <p class="day" style="margin-top:0">DS Auditorium, Kothakurussi</p>
+        <p style="color:var(--muted);font:14px Arial,sans-serif;margin:6px 0 0">Palakkad, Kerala</p>
+        <p class="day" style="margin:16px 0 20px">7 February 2027 · Sunday</p>
+        <div class="actions">
+          <a class="btn secondary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=DS+Auditorium+Kothakurussi+Palakkad+Kerala">Get Function Directions</a>
+        </div>
+        <div class="actions">
+          <button class="btn" type="button" data-next="page4">Reception Details →</button>
+        </div>
+      </div>
+
+      <!-- PAGE 4: RECEPTION -->
+      <div class="page-slide" id="page4">
         <div class="ornament">⌖</div>
-        <h2>Wedding Reception</h2>
-        <p><strong>5:00 PM – 8:00 PM</strong></p>
-        <p>Kizhakkekkara Auditorium</p>
-        <p>Mangalamkunnu, Palakkad, Kerala</p>
+        <h2 style="font-weight:normal;color:var(--lavdeep);font-size:27px;margin:10px 0 6px">Wedding Reception</h2>
+        <p class="day" style="margin-top:0">Kizhakkekkara Auditorium</p>
+        <p style="color:var(--muted);font:14px Arial,sans-serif;margin:6px 0 0">Mangalamkunnu, Palakkad, Kerala</p>
+        <p style="color:var(--lavdeep);font-size:18px;margin:18px 0 6px"><strong>5:00 PM – 8:00 PM</strong></p>
+        <p class="day" style="margin-bottom:20px">7 February 2027 · Sunday</p>
         <div class="actions">
           <a class="btn secondary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kizhakkekkara+Auditorium+Mangalamkunnu+Palakkad+Kerala">Get Reception Directions</a>
         </div>
-      </section>
-      <section class="countdown" aria-label="Countdown to wedding">
-        <h3>Counting the moments</h3>
+        <div class="actions">
+          <button class="btn" type="button" data-next="page5">See Countdown →</button>
+        </div>
+      </div>
+
+      <!-- PAGE 5: COUNTDOWN -->
+      <div class="page-slide" id="page5">
+        <div class="ornament">✦ ❧ ✦</div>
+        <h3 style="font-weight:normal;color:var(--lavdeep);font-size:25px;margin:14px 0">Counting the moments</h3>
         <div class="timer">
           <div class="timebox"><strong id="days">—</strong><span>Days</span></div>
           <div class="timebox"><strong id="hours">—</strong><span>Hours</span></div>
           <div class="timebox"><strong id="minutes">—</strong><span>Minutes</span></div>
           <div class="timebox"><strong id="seconds">—</strong><span>Seconds</span></div>
         </div>
-      </section>
-      <div class="ornament">❧ ✦ ❧</div>
-      <section class="rsvp" id="rsvp">
-        <h3>Kindly RSVP</h3>
-        <form id="rsvpForm">
-          <label for="guestName">Your name</label>
-          <input id="guestName" name="guestName" autocomplete="name" required placeholder="Enter your full name">
-          <label for="attendance">Will you be joining us?</label>
-          <select id="attendance" name="attendance" required>
-            <option value="Joyfully accepts">Joyfully accepts</option>
-            <option value="Regretfully declines">Regretfully declines</option>
-          </select>
-          <label for="message">A note for the couple (optional)</label>
-          <textarea id="message" name="message" rows="3" placeholder="Write a short message"></textarea>
-          <button class="btn" type="submit">Send RSVP via WhatsApp</button>
-          <p class="note">This opens WhatsApp with your RSVP message ready to send. The hosts' WhatsApp number must be added in the website settings below before publishing.</p>
-        </form>
-      </section>
-      <section class="scratch-section" aria-label="Scratch to reveal invitation" style="max-width:500px;margin:30px auto 0;padding:22px 12px">
+        <div class="actions" style="margin-top:30px">
+          <button class="btn" type="button" data-next="page6">Our Photos →</button>
+        </div>
+      </div>
+
+      <!-- PAGE 6: PHOTO GALLERY -->
+      <div class="page-slide" id="page6">
+        <section class="photo-gallery-section">
+          <div class="ornament">📸</div>
+          <h3>Our Moments</h3>
+          <p class="note" style="margin:0 0 14px">A few cherished memories of Ajith &amp; Nithya.</p>
+
+          <input type="file" id="photoInput" accept="image/*" multiple style="display:none">
+
+          <!-- Photos are now set to .jpeg -->
+          <div class="photo-gallery" id="photoGallery">
+            <img src="photo1.jpeg" alt="Couple photo 1">
+            <img src="photo2.jpeg" alt="Couple photo 2">
+            <img src="photo3.jpeg" alt="Couple photo 3">
+            <img src="photo4.jpeg" alt="Couple photo 4">
+            <img src="photo5.jpeg" alt="Couple photo 5">
+          </div>
+
+          <div class="upload-btn-row">
+            <button class="btn secondary" id="choosePhotosBtn" type="button">Choose Photos from Device</button>
+            <button class="btn secondary" id="clearPhotosBtn" type="button">Reset Gallery</button>
+          </div>
+          <p class="note" style="margin-top:10px">Photos appear instantly in the gallery — this preview is local to your browser.</p>
+        </section>
+        <div class="actions">
+          <button class="btn" type="button" data-next="page7">Surprise →</button>
+        </div>
+      </div>
+
+      <!-- PAGE 7: SCRATCH -->
+      <div class="page-slide" id="page7">
         <div class="ornament">✦ ❧ ✦</div>
-        <h3 style="font-weight:normal;color:var(--green);font-size:25px;margin:12px 0">A little surprise for you</h3>
+        <h3 style="font-weight:normal;color:var(--lavdeep);font-size:25px;margin:12px 0">A little surprise for you</h3>
         <p style="font:14px/1.6 Arial,sans-serif;color:var(--muted);margin:0 auto 16px;max-width:360px">Scratch the card below to reveal your invitation.</p>
-        <div id="scratchCard" style="position:relative;max-width:420px;height:190px;margin:0 auto;border:1px solid var(--gold);overflow:hidden;background:#173c2c;touch-action:none">
-          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;color:#fbf0d1;text-align:center;background:radial-gradient(circle at center, #28543d, #173c2c)">
-            <div style="font-size:22px;color:#d6b86e;margin-bottom:8px">🪔 ✦ 🪔</div>
-            <div style="font:10px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#e2ce98">YOU ARE INVITED</div>
-            <div style="font-size:29px;margin:9px 0">Ajith & Nithya</div>
-            <div style="font:12px Arial,sans-serif;letter-spacing:.08em">YOU'RE INVITED!</div>
-            <div style="font:12px Arial,sans-serif;margin-top:5px;color:#e8dcc0">Mangalamkunnu, Palakkad</div>
+        <div id="scratchCard" style="position:relative;max-width:420px;height:190px;margin:0 auto;border:1px solid var(--lavdeep);overflow:hidden;background:var(--lavdeep);touch-action:none">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;color:var(--white);text-align:center;background:radial-gradient(circle at center, var(--lav), var(--lavdeep))">
+            <div style="font-size:22px;color:var(--white);margin-bottom:8px">🪔 ✦ 🪔</div>
+            <div style="font-size:29px;margin:9px 0;color:var(--white)">Ajith &amp; Nithya</div>
+            <div style="font:13px Arial,sans-serif;letter-spacing:.1em;color:var(--white);margin-top:6px">Hearty invited you for our wedding</div>
           </div>
           <canvas id="scratchCanvas" aria-label="Scratch here to reveal the wedding invitation" style="position:absolute;inset:0;width:100%;height:100%;cursor:crosshair"></canvas>
         </div>
-        <p id="scratchHint" class="note">Use your finger or mouse to scratch away the gold layer.</p>
-      </section>
-      <div class="actions">
-        <button class="btn secondary" id="shareBtn" type="button">Share invitation</button>
+        <p id="scratchHint" class="note">Use your finger or mouse to scratch away the dark lavender layer.</p>
+        <div class="actions">
+          <button class="btn" type="button" data-next="page8">Share &amp; Blessings →</button>
+        </div>
       </div>
+
+      <!-- PAGE 8: SHARE / FINAL -->
+      <div class="page-slide" id="page8">
+        <div class="ornament">❧ ✦ ❧</div>
+        <h3 style="font-weight:normal;color:var(--lavdeep);font-size:26px;margin:14px 0 8px">With love &amp; blessings</h3>
+        <p class="invite" style="margin-bottom:22px">We can't wait to celebrate with you. Share the joy with your loved ones!</p>
+        <div class="actions">
+          <button class="btn" id="shareBtn" type="button">Share Invitation</button>
+        </div>
+        <p class="note" style="margin-top:18px">Your presence will make our day more special.</p>
+      </div>
+
     </main>
     <footer>
       Your presence will make our day more special
-      <div class="tiny">With love & blessings · Ajith and Nithya</div>
+      <div class="tiny">With love &amp; blessings · Ajith and Nithya</div>
     </footer>
   </div>
 </div>
+
+<button class="music-toggle" id="musicToggle" aria-label="Toggle background music" title="Play background music">🎵</button>
+<audio id="bgMusic" preload="auto">
+  <source src="kalla-nikkiriye.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-  // Countdown to the wedding muhurtham on 7 February 2027 at 10:00 AM.
+  // ---------- Floating hearts ----------
+  (function createHearts(){
+    const container = document.getElementById('heartsOverlay');
+    const HEART_COUNT = 10;
+    for (let i = 0; i < HEART_COUNT; i++) {
+      const heart = document.createElement('span');
+      heart.textContent = '❤';
+      const size = 16 + Math.random() * 30;
+      heart.style.fontSize = size + 'px';
+      heart.style.left = (Math.random() * 100) + 'vw';
+      const duration = 12 + Math.random() * 16;
+      heart.style.animationDuration = duration + 's';
+      heart.style.animationDelay = (-Math.random() * duration) + 's';
+      container.appendChild(heart);
+    }
+  })();
+
+  // ---------- Page navigation ----------
+  const pageIds = ['page1','page2','page3','page4','page5','page6','page7','page8'];
+  const frame = document.getElementById('mainFrame');
+  const mainContent = document.getElementById('mainContent');
+  let currentPage = 1;
+
+  function setBackgrounds(n){
+    frame.className = 'frame';
+    mainContent.className = 'main-content';
+    frame.classList.add('bg-page' + n);
+    mainContent.classList.add('bg-page' + n);
+  }
+
+  function showPage(n){
+    if (n < 1 || n > pageIds.length) return;
+    const currentEl = document.getElementById(pageIds[currentPage-1]);
+    if (currentEl) {
+      currentEl.style.animation = 'blurOut .3s ease forwards';
+      setTimeout(() => {
+        currentEl.style.animation = '';
+        currentEl.classList.remove('active');
+        const target = document.getElementById(pageIds[n-1]);
+        if (target) {
+          target.classList.add('active');
+          setBackgrounds(n);
+          currentPage = n;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 280);
+    } else {
+      const target = document.getElementById(pageIds[n-1]);
+      if (target) {
+        target.classList.add('active');
+        setBackgrounds(n);
+        currentPage = n;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  }
+
+  document.getElementById('startBtn').addEventListener('click', function(){ showPage(2); });
+  document.querySelectorAll('[data-next]').forEach(btn => {
+    btn.addEventListener('click', function(){
+      const nextId = this.getAttribute('data-next');
+      const idx = pageIds.indexOf(nextId);
+      if (idx !== -1) showPage(idx + 1);
+    });
+  });
+  setBackgrounds(1);
+
+  // ---------- IN-PAGE PHOTO UPLOAD ----------
+  (function setupPhotoUpload(){
+    const gallery = document.getElementById('photoGallery');
+    const input = document.getElementById('photoInput');
+    const chooseBtn = document.getElementById('choosePhotosBtn');
+    const clearBtn = document.getElementById('clearPhotosBtn');
+    const originalHTML = gallery.innerHTML;
+
+    chooseBtn.addEventListener('click', () => input.click());
+
+    input.addEventListener('change', function(){
+      const files = Array.from(this.files).slice(0, 12);
+      files.forEach(file => {
+        if (!file.type.startsWith('image/')) return;
+        const reader = new FileReader();
+        reader.onload = function(e){
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.alt = file.name;
+          gallery.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+      input.value = '';
+    });
+
+    clearBtn.addEventListener('click', function(){
+      gallery.innerHTML = originalHTML;
+    });
+  })();
+
+  // ---------- Countdown ----------
   const weddingDate = new Date(2027, 1, 7, 10, 0, 0);
   function updateCountdown(){
     const diff = weddingDate.getTime() - Date.now();
+    const ids = ['days','hours','minutes','seconds'];
     if(diff <= 0){
-      ["days","hours","minutes","seconds"].forEach(id => document.getElementById(id).textContent = "0");
+      ids.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = "0"; });
       return;
     }
-    document.getElementById("days").textContent = Math.floor(diff/86400000);
-    document.getElementById("hours").textContent = Math.floor(diff%86400000/3600000);
-    document.getElementById("minutes").textContent = Math.floor(diff%3600000/60000);
-    document.getElementById("seconds").textContent = Math.floor(diff%60000/1000);
+    const days = document.getElementById('days');
+    const hours = document.getElementById('hours');
+    const minutes = document.getElementById('minutes');
+    const seconds = document.getElementById('seconds');
+    if(days) days.textContent = Math.floor(diff/86400000);
+    if(hours) hours.textContent = Math.floor(diff%86400000/3600000);
+    if(minutes) minutes.textContent = Math.floor(diff%3600000/60000);
+    if(seconds) seconds.textContent = Math.floor(diff%60000/1000);
   }
   updateCountdown(); setInterval(updateCountdown,1000);
 
-  // IMPORTANT: Replace this placeholder with the hosts' WhatsApp number,
-  // including country code and digits only, e.g. 91XXXXXXXXXX.
-  const HOST_WHATSAPP_NUMBER = "REPLACE_WITH_HOST_NUMBER";
-
-  document.getElementById("rsvpForm").addEventListener("submit", function(e){
-    e.preventDefault();
-    if(HOST_WHATSAPP_NUMBER === "REPLACE_WITH_HOST_NUMBER"){
-      alert("The RSVP form is ready, but the hosts' WhatsApp number needs to be added before it can send.");
-      return;
-    }
-    const name = document.getElementById("guestName").value.trim();
-    const attendance = document.getElementById("attendance").value;
-    const message = document.getElementById("message").value.trim();
-    const text = `Wedding RSVP — Ajith & Nithya%0AName: ${name}%0AAttendance: ${attendance}${message ? "%0AMessage: "+message : ""}`;
-    window.open(`https://wa.me/${HOST_WHATSAPP_NUMBER}?text=${encodeURIComponent(decodeURIComponent(text))}`, "_blank", "noopener");
-  });
-
-  // Scratch-to-reveal card: works with mouse or touch.
+  // ---------- Scratch card ----------
   (function setupScratchCard(){
     const canvas = document.getElementById("scratchCanvas");
     const card = document.getElementById("scratchCard");
+    if (!canvas || !card) return;
     const ctx = canvas.getContext("2d", { willReadFrequently: true });
     const hint = document.getElementById("scratchHint");
     let scratching = false, revealed = false;
 
     function drawCover(){
       const rect = card.getBoundingClientRect();
+      if (rect.width === 0) return;
       const dpr = window.devicePixelRatio || 1;
       canvas.width = Math.round(rect.width * dpr);
       canvas.height = Math.round(rect.height * dpr);
@@ -188,15 +422,15 @@
       const w = rect.width, h = rect.height;
       ctx.globalCompositeOperation = "source-over";
       const gradient = ctx.createLinearGradient(0, 0, w, h);
-      gradient.addColorStop(0, "#d8c28b");
-      gradient.addColorStop(.5, "#b99a55");
-      gradient.addColorStop(1, "#8d7139");
+      gradient.addColorStop(0, "#7a64a8");
+      gradient.addColorStop(.5, "#5e4a8a");
+      gradient.addColorStop(1, "#3b2d5c");
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, w, h);
-      ctx.strokeStyle = "rgba(255,248,222,.7)";
+      ctx.strokeStyle = "rgba(255,255,255,.8)";
       ctx.lineWidth = 1;
       ctx.strokeRect(9, 9, w - 18, h - 18);
-      ctx.fillStyle = "#fff7df";
+      ctx.fillStyle = "#ffffff";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.font = "26px Georgia, serif";
@@ -231,7 +465,7 @@
         revealed = true;
         canvas.style.transition = "opacity .35s ease";
         canvas.style.opacity = "0";
-        hint.textContent = "Surprise revealed! You're warmly invited. ❤️";
+        if(hint) hint.textContent = "Surprise revealed! You're warmly invited. ❤️";
         setTimeout(() => { canvas.style.display = "none"; }, 380);
       }
     }
@@ -245,17 +479,85 @@
     canvas.addEventListener("pointermove", e => { scratch(e); if(scratching) e.preventDefault(); });
     canvas.addEventListener("pointerup", () => scratching = false);
     canvas.addEventListener("pointercancel", () => scratching = false);
-    drawCover();
+
+    const page7 = document.getElementById('page7');
+    if (page7) {
+      const mo = new MutationObserver(() => {
+        if (page7.classList.contains('active') && !revealed) setTimeout(drawCover, 60);
+      });
+      mo.observe(page7, { attributes: true, attributeFilter: ['class'] });
+    }
+    if (page7 && page7.classList.contains('active')) drawCover();
     window.addEventListener("resize", () => { if(!revealed) drawCover(); });
   })();
 
-  document.getElementById("shareBtn").addEventListener("click", async function(){
-    const shareData = {title:"Ajith & Nithya — Wedding Invitation", text:"You're warmly invited to celebrate Ajith & Nithya on Sunday, 7 February 2027. Reception: 5:00 PM–8:00 PM at DS Auditorium, Mangalamkunnu, Palakkad, Kerala.", url:window.location.href};
+  // ---------- Share ----------
+  document.getElementById('shareBtn').addEventListener('click', async function(){
+    const shareData = {
+      title: "Ajith & Nithya — Wedding Invitation",
+      text: "You're warmly invited to celebrate Ajith & Nithya on Sunday, 7 February 2027. Muhurtham 10:00–11:00 AM at Pattarkonam Shiva Temple, Ananganadi. Wedding function at DS Auditorium, Kothakurussi. Reception 5:00–8:00 PM at Kizhakkekkara Auditorium, Mangalamkunnu, Palakkad.",
+      url: window.location.href
+    };
     try {
       if(navigator.share) await navigator.share(shareData);
-      else { await navigator.clipboard.writeText(shareData.text + " " + shareData.url); alert("Invitation details copied. Paste them into WhatsApp to share."); }
-    } catch(err) { /* User cancelled sharing. */ }
+      else {
+        await navigator.clipboard.writeText(shareData.text + " " + shareData.url);
+        alert("Invitation details copied. Paste them into WhatsApp to share.");
+      }
+    } catch(err) { /* cancelled */ }
   });
+
+  // ---------- Music toggle with segment 2:01 → 2:50 ----------
+  (function setupMusic(){
+    const musicToggle = document.getElementById('musicToggle');
+    const bgMusic     = document.getElementById('bgMusic');
+
+    // ── Song segment: 2:01 → 2:50 ──
+    const START_TIME = 121;   // 2 min 01 sec
+    const END_TIME   = 170;   // 2 min 50 sec
+    const LOOP       = true;  // set false if you want it to play only once
+
+    let playing = false;
+
+    bgMusic.addEventListener('loadedmetadata', () => {
+      bgMusic.currentTime = START_TIME;
+    });
+
+    bgMusic.addEventListener('timeupdate', () => {
+      if (bgMusic.currentTime >= END_TIME) {
+        if (LOOP) {
+          bgMusic.currentTime = START_TIME;
+          bgMusic.play();
+        } else {
+          bgMusic.pause();
+          musicToggle.textContent = '🎵';
+          musicToggle.title = 'Play background music';
+          playing = false;
+        }
+      }
+    });
+
+    musicToggle.addEventListener('click', function(){
+      if (playing) {
+        bgMusic.pause();
+        musicToggle.textContent = '🎵';
+        musicToggle.title = 'Play background music';
+        playing = false;
+      } else {
+        bgMusic.volume = 0.35;
+        if (bgMusic.currentTime < START_TIME || bgMusic.currentTime >= END_TIME) {
+          bgMusic.currentTime = START_TIME;
+        }
+        bgMusic.play().then(() => {
+          musicToggle.textContent = '🔇';
+          musicToggle.title = 'Pause background music';
+          playing = true;
+        }).catch(() => {
+          alert('Unable to play audio. Please check your browser audio settings or replace the music source.');
+        });
+      }
+    });
+  })();
 </script>
 </body>
 </html>

@@ -66,6 +66,8 @@
       <div class="day">Save the date</div>
       <div class="date">7 February 2027</div>
       <div class="day">Sunday</div>
+      <div class="day" style="margin-top:16px">Reception</div>
+      <div class="date" style="font-size:22px">5:00 PM – 8:00 PM</div>
       <section class="venue" aria-label="Wedding venue">
         <div class="ornament">⌖</div>
         <h2>DS Auditorium</h2>
@@ -107,9 +109,9 @@
         <div id="scratchCard" style="position:relative;max-width:420px;height:190px;margin:0 auto;border:1px solid var(--gold);overflow:hidden;background:#173c2c;touch-action:none">
           <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;color:#fbf0d1;text-align:center;background:radial-gradient(circle at center, #28543d, #173c2c)">
             <div style="font-size:22px;color:#d6b86e;margin-bottom:8px">🪔 ✦ 🪔</div>
-            <div style="font:10px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#e2ce98">You are warmly invited to</div>
-            <div style="font-size:29px;margin:9px 0">Ajith & Nithya's Wedding</div>
-            <div style="font:12px Arial,sans-serif;letter-spacing:.08em">7 FEBRUARY 2027 · DS AUDITORIUM</div>
+            <div style="font:10px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#e2ce98">YOU ARE INVITED</div>
+            <div style="font-size:29px;margin:9px 0">Ajith & Nithya</div>
+            <div style="font:12px Arial,sans-serif;letter-spacing:.08em">YOU'RE INVITED!</div>
             <div style="font:12px Arial,sans-serif;margin-top:5px;color:#e8dcc0">Mangalamkunnu, Palakkad</div>
           </div>
           <canvas id="scratchCanvas" aria-label="Scratch here to reveal the wedding invitation" style="position:absolute;inset:0;width:100%;height:100%;cursor:crosshair"></canvas>
@@ -238,7 +240,7 @@
   })();
 
   document.getElementById("shareBtn").addEventListener("click", async function(){
-    const shareData = {title:"Ajith & Nithya — Wedding Invitation", text:"You're warmly invited to celebrate Ajith & Nithya on Sunday, 7 February 2027 at DS Auditorium, Mangalamkunnu, Palakkad, Kerala.", url:window.location.href};
+    const shareData = {title:"Ajith & Nithya — Wedding Invitation", text:"You're warmly invited to celebrate Ajith & Nithya on Sunday, 7 February 2027. Reception: 5:00 PM–8:00 PM at DS Auditorium, Mangalamkunnu, Palakkad, Kerala.", url:window.location.href};
     try {
       if(navigator.share) await navigator.share(shareData);
       else { await navigator.clipboard.writeText(shareData.text + " " + shareData.url); alert("Invitation details copied. Paste them into WhatsApp to share."); }

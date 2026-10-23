@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173c2c">
+<title>Ajith & Nithya | Wedding Invitation</title>
+<style>
+  :root{--green:#173c2c;--green2:#28543d;--gold:#b99a55;--cream:#fbf6e9;--ink:#26352b;--muted:#6f786d}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+  .page{min-height:100vh;padding:18px;background:
+    radial-gradient(ellipse at top,rgba(185,154,85,.13),transparent 48%),
+    var(--cream)}
+  .frame{max-width:760px;margin:0 auto;border:1px solid var(--gold);outline:1px solid rgba(185,154,85,.35);outline-offset:5px;position:relative;overflow:hidden}
+  .frame:before,.frame:after{content:"❧";position:absolute;color:var(--gold);font-size:52px;opacity:.75;top:10px}
+  .frame:before{left:14px}.frame:after{right:14px;transform:scaleX(-1)}
+  header{text-align:center;background:var(--green);color:var(--cream);padding:54px 22px 46px;position:relative}
+  .eyebrow{letter-spacing:.24em;text-transform:uppercase;font:11px Arial,sans-serif;color:#e2ce98}
+  .lamp{font-size:32px;margin:18px 0 10px;color:#e0c37c}
+  h1{font-size:clamp(43px,9vw,76px);font-weight:normal;line-height:1.02;margin:12px 0;color:#f9edce}
+  .amp{font-style:italic;color:#d6b86e;font-size:.72em}
+  .subtitle{font:12px Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase;margin-top:20px;color:#e8dcc0}
+  main{padding:34px 22px 38px;text-align:center}
+  .ornament{color:var(--gold);letter-spacing:.45em;font-size:17px}
+  .invite{max-width:500px;margin:14px auto 26px;font-size:18px;line-height:1.7}
+  .date{font-size:clamp(24px,5vw,34px);color:var(--green);margin:18px 0 8px}
+  .day{font:12px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .venue{margin:28px auto 22px;padding:20px 12px;border-top:1px solid #d9c99f;border-bottom:1px solid #d9c99f;max-width:470px}
+  .venue h2{font-weight:normal;color:var(--green);font-size:27px;margin:8px 0}
+  .venue p{margin:5px 0;color:var(--muted);font:14px Arial,sans-serif;line-height:1.5}
+  .countdown{margin:26px auto 28px}
+  .countdown h3,.rsvp h3{font-weight:normal;color:var(--green);font-size:25px;margin:0 0 14px}
+  .timer{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+  .timebox{min-width:68px;padding:12px 8px;background:#f3ead5;border:1px solid #e1d2aa}
+  .timebox strong{display:block;font-size:25px;color:var(--green);font-weight:normal}
+  .timebox span{font:10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+  .actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px 0}
+  .btn{display:inline-block;padding:13px 18px;border:1px solid var(--green);background:var(--green);color:white;text-decoration:none;font:12px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+  .btn.secondary{background:transparent;color:var(--green)}
+  .rsvp{max-width:500px;margin:34px auto 0;text-align:left;background:#fffaf0;border:1px solid #e1d2aa;padding:22px}
+  .rsvp h3{text-align:center}
+  label{display:block;font:12px Arial,sans-serif;color:var(--green);margin:13px 0 6px}
+  input,select,textarea{width:100%;padding:12px;border:1px solid #d6c9a8;background:#fffdf8;font:15px Arial,sans-serif;color:var(--ink);border-radius:0}
+  .rsvp .btn{width:100%;margin-top:16px}
+  .note{font:12px/1.5 Arial,sans-serif;color:var(--muted);text-align:center;margin:12px 0 0}
+  footer{text-align:center;background:var(--green);color:#e8dcc0;padding:22px 18px;font:11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+  .tiny{font-size:10px;letter-spacing:.04em;text-transform:none;opacity:.8;margin-top:8px}
+  @media(min-width:600px){main{padding:42px 42px 48px}header{padding-top:64px;padding-bottom:54px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="frame">
+    <header>
+      <div class="eyebrow">With the blessings of our families</div>
+      <div class="lamp" aria-hidden="true">🪔</div>
+      <div class="eyebrow">A celebration of love</div>
+      <h1>Ajith <span class="amp">&</span><br>Nithya</h1>
+      <div class="subtitle">Wedding Invitation</div>
+    </header>
+    <main>
+      <div class="ornament">✦ ❧ ✦</div>
+      <p class="invite">Together with our families, we warmly invite you to join us as we begin a beautiful new chapter of our lives.</p>
+      <div class="day">Save the date</div>
+      <div class="date">7 February 2027</div>
+      <div class="day">Sunday</div>
+      <section class="venue" aria-label="Wedding venue">
+        <div class="ornament">⌖</div>
+        <h2>DS Auditorium</h2>
+        <p>Mangalamkunnu, Palakkad, Kerala</p>
+        <div class="actions">
+          <a class="btn secondary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=DS+Auditorium+Mangalamkunnu+Palakkad+Kerala">Get Directions</a>
+        </div>
+      </section>
+      <section class="countdown" aria-label="Countdown to wedding">
+        <h3>Counting the moments</h3>
+        <div class="timer">
+          <div class="timebox"><strong id="days">—</strong><span>Days</span></div>
+          <div class="timebox"><strong id="hours">—</strong><span>Hours</span></div>
+          <div class="timebox"><strong id="minutes">—</strong><span>Minutes</span></div>
+          <div class="timebox"><strong id="seconds">—</strong><span>Seconds</span></div>
+        </div>
+      </section>
+      <div class="ornament">❧ ✦ ❧</div>
+      <section class="rsvp" id="rsvp">
+        <h3>Kindly RSVP</h3>
+        <form id="rsvpForm">
+          <label for="guestName">Your name</label>
+          <input id="guestName" name="guestName" autocomplete="name" required placeholder="Enter your full name">
+          <label for="attendance">Will you be joining us?</label>
+          <select id="attendance" name="attendance" required>
+            <option value="Joyfully accepts">Joyfully accepts</option>
+            <option value="Regretfully declines">Regretfully declines</option>
+          </select>
+          <label for="message">A note for the couple (optional)</label>
+          <textarea id="message" name="message" rows="3" placeholder="Write a short message"></textarea>
+          <button class="btn" type="submit">Send RSVP via WhatsApp</button>
+          <p class="note">This opens WhatsApp with your RSVP message ready to send. The hosts' WhatsApp number must be added in the website settings below before publishing.</p>
+        </form>
+      </section>
+      <section class="scratch-section" aria-label="Scratch to reveal invitation" style="max-width:500px;margin:30px auto 0;padding:22px 12px">
+        <div class="ornament">✦ ❧ ✦</div>
+        <h3 style="font-weight:normal;color:var(--green);font-size:25px;margin:12px 0">A little surprise for you</h3>
+        <p style="font:14px/1.6 Arial,sans-serif;color:var(--muted);margin:0 auto 16px;max-width:360px">Scratch the card below to reveal your invitation.</p>
+        <div id="scratchCard" style="position:relative;max-width:420px;height:190px;margin:0 auto;border:1px solid var(--gold);overflow:hidden;background:#173c2c;touch-action:none">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;color:#fbf0d1;text-align:center;background:radial-gradient(circle at center, #28543d, #173c2c)">
+            <div style="font-size:22px;color:#d6b86e;margin-bottom:8px">🪔 ✦ 🪔</div>
+            <div style="font:10px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#e2ce98">You are warmly invited to</div>
+            <div style="font-size:29px;margin:9px 0">Ajith & Nithya's Wedding</div>
+            <div style="font:12px Arial,sans-serif;letter-spacing:.08em">7 FEBRUARY 2027 · DS AUDITORIUM</div>
+            <div style="font:12px Arial,sans-serif;margin-top:5px;color:#e8dcc0">Mangalamkunnu, Palakkad</div>
+          </div>
+          <canvas id="scratchCanvas" aria-label="Scratch here to reveal the wedding invitation" style="position:absolute;inset:0;width:100%;height:100%;cursor:crosshair"></canvas>
+        </div>
+        <p id="scratchHint" class="note">Use your finger or mouse to scratch away the gold layer.</p>
+      </section>
+      <div class="actions">
+        <button class="btn secondary" id="shareBtn" type="button">Share invitation</button>
+      </div>
+    </main>
+    <footer>
+      Your presence will make our day more special
+      <div class="tiny">With love & blessings · Ajith and Nithya</div>
+    </footer>
+  </div>
+</div>
+<script>
+  // Wedding date. No ceremony time is displayed or assumed.
+  const weddingDate = new Date(2027, 1, 7, 0, 0, 0);
+  function updateCountdown(){
+    const diff = weddingDate.getTime() - Date.now();
+    if(diff <= 0){
+      ["days","hours","minutes","seconds"].forEach(id => document.getElementById(id).textContent = "0");
+      return;
+    }
+    document.getElementById("days").textContent = Math.floor(diff/86400000);
+    document.getElementById("hours").textContent = Math.floor(diff%86400000/3600000);
+    document.getElementById("minutes").textContent = Math.floor(diff%3600000/60000);
+    document.getElementById("seconds").textContent = Math.floor(diff%60000/1000);
+  }
+  updateCountdown(); setInterval(updateCountdown,1000);
+
+  // IMPORTANT: Replace this placeholder with the hosts' WhatsApp number,
+  // including country code and digits only, e.g. 91XXXXXXXXXX.
+  const HOST_WHATSAPP_NUMBER = "REPLACE_WITH_HOST_NUMBER";
+
+  document.getElementById("rsvpForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    if(HOST_WHATSAPP_NUMBER === "REPLACE_WITH_HOST_NUMBER"){
+      alert("The RSVP form is ready, but the hosts' WhatsApp number needs to be added before it can send.");
+      return;
+    }
+    const name = document.getElementById("guestName").value.trim();
+    const attendance = document.getElementById("attendance").value;
+    const message = document.getElementById("message").value.trim();
+    const text = `Wedding RSVP — Ajith & Nithya%0AName: ${name}%0AAttendance: ${attendance}${message ? "%0AMessage: "+message : ""}`;
+    window.open(`https://wa.me/${HOST_WHATSAPP_NUMBER}?text=${encodeURIComponent(decodeURIComponent(text))}`, "_blank", "noopener");
+  });
+
+  // Scratch-to-reveal card: works with mouse or touch.
+  (function setupScratchCard(){
+    const canvas = document.getElementById("scratchCanvas");
+    const card = document.getElementById("scratchCard");
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    const hint = document.getElementById("scratchHint");
+    let scratching = false, revealed = false;
+
+    function drawCover(){
+      const rect = card.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(rect.height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const w = rect.width, h = rect.height;
+      ctx.globalCompositeOperation = "source-over";
+      const gradient = ctx.createLinearGradient(0, 0, w, h);
+      gradient.addColorStop(0, "#d8c28b");
+      gradient.addColorStop(.5, "#b99a55");
+      gradient.addColorStop(1, "#8d7139");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, w, h);
+      ctx.strokeStyle = "rgba(255,248,222,.7)";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(9, 9, w - 18, h - 18);
+      ctx.fillStyle = "#fff7df";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = "26px Georgia, serif";
+      ctx.fillText("✦", w / 2, h / 2 - 26);
+      ctx.font = "bold 13px Arial, sans-serif";
+      ctx.fillText("SCRATCH TO REVEAL", w / 2, h / 2 + 1);
+      ctx.font = "12px Arial, sans-serif";
+      ctx.fillText("A special invitation awaits", w / 2, h / 2 + 25);
+      ctx.globalCompositeOperation = "destination-out";
+    }
+
+    function pointFromEvent(e){
+      const rect = canvas.getBoundingClientRect();
+      return {x:e.clientX - rect.left, y:e.clientY - rect.top};
+    }
+    function scratch(e){
+      if(!scratching || revealed) return;
+      const p = pointFromEvent(e);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 19, 0, Math.PI * 2);
+      ctx.fill();
+      checkProgress();
+    }
+    function checkProgress(){
+      const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      let transparent = 0, total = 0;
+      for(let i = 3; i < pixels.length; i += 4){
+        total++;
+        if(pixels[i] < 40) transparent++;
+      }
+      if(total && transparent / total > .48){
+        revealed = true;
+        canvas.style.transition = "opacity .35s ease";
+        canvas.style.opacity = "0";
+        hint.textContent = "Surprise revealed! You're warmly invited. ❤️";
+        setTimeout(() => { canvas.style.display = "none"; }, 380);
+      }
+    }
+    canvas.addEventListener("pointerdown", e => {
+      if(revealed) return;
+      scratching = true;
+      canvas.setPointerCapture(e.pointerId);
+      scratch(e);
+      e.preventDefault();
+    });
+    canvas.addEventListener("pointermove", e => { scratch(e); if(scratching) e.preventDefault(); });
+    canvas.addEventListener("pointerup", () => scratching = false);
+    canvas.addEventListener("pointercancel", () => scratching = false);
+    drawCover();
+    window.addEventListener("resize", () => { if(!revealed) drawCover(); });
+  })();
+
+  document.getElementById("shareBtn").addEventListener("click", async function(){
+    const shareData = {title:"Ajith & Nithya — Wedding Invitation", text:"You're warmly invited to celebrate Ajith & Nithya on Sunday, 7 February 2027 at DS Auditorium, Mangalamkunnu, Palakkad, Kerala.", url:window.location.href};
+    try {
+      if(navigator.share) await navigator.share(shareData);
+      else { await navigator.clipboard.writeText(shareData.text + " " + shareData.url); alert("Invitation details copied. Paste them into WhatsApp to share."); }
+    } catch(err) { /* User cancelled sharing. */ }
+  });
+</script>
+</body>
+</html>

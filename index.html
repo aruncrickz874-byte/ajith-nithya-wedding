@@ -18,21 +18,13 @@
   html{scroll-behavior:smooth}
   body{margin:0;background:var(--white);color:var(--ink);font-family:Georgia,"Times New Roman",serif;position:relative;overflow-x:hidden}
   
-  /* --- BOKEH BACKGROUND EFFECT --- */
+  /* --- BACKGROUND PHOTO (RESTORED) --- */
   .page{
     min-height:100vh;
     padding:18px;
-    background-color: #1a1025; 
-    background-image: 
-      radial-gradient(circle at 15% 20%, rgba(255, 215, 0, 0.15) 0%, transparent 15%),
-      radial-gradient(circle at 80% 15%, rgba(255, 215, 0, 0.1) 0%, transparent 20%),
-      radial-gradient(circle at 50% 50%, rgba(142, 68, 173, 0.2) 0%, transparent 30%),
-      radial-gradient(circle at 85% 75%, rgba(255, 215, 0, 0.15) 0%, transparent 25%),
-      radial-gradient(circle at 20% 80%, rgba(142, 68, 173, 0.2) 0%, transparent 20%),
-      radial-gradient(circle at 60% 10%, rgba(255, 255, 255, 0.05) 0%, transparent 15%),
-      radial-gradient(circle at 40% 90%, rgba(255, 215, 0, 0.1) 0%, transparent 20%),
-      radial-gradient(circle at 90% 40%, rgba(142, 68, 173, 0.15) 0%, transparent 15%);
-    background-size: 100% 100%;
+    background-image: url('background.jpeg');
+    background-size: cover;
+    background-position: center;
     background-attachment: fixed;
     position:relative;
     z-index:1;
@@ -339,21 +331,19 @@
         </div>
       </div>
 
-      <!-- PAGE 7 -->
+      <!-- PAGE 7: CLEAN SCRATCH CARD -->
       <div class="page-slide" id="page7">
         <div class="venue">
           <div class="ornament">👩‍❤️‍👨</div>
-          <p style="font:14px/1.6 Arial,sans-serif;color:var(--white);margin:0 auto 16px;max-width:360px;font-weight:bold;">Scratch the card below to reveal your invitation.</p>
+          <p style="font:14px/1.6 Arial,sans-serif;color:var(--white);margin:0 auto 16px;max-width:360px;font-weight:bold;">Scratch here to reveal your invitation.</p>
           
-          <!-- Scratch Card with Image Background -->
           <div id="scratchCard" style="position:relative;max-width:420px;height:190px;margin:0 auto;border:1px solid var(--lavdeep);overflow:hidden;background:var(--lavdeep);touch-action:none">
             
-            <!-- The background image and text that gets revealed -->
+            <!-- The clean background that gets revealed (No emojis, just text and image) -->
             <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;color:var(--white);text-align:center;background-image: url('scratch-bg.jpeg'); background-size: cover; background-position: center;">
-              <div style="position:absolute;inset:0;background: rgba(30,20,50,0.7);"></div> <!-- Dark overlay to make text readable -->
+              <div style="position:absolute;inset:0;background: rgba(30,20,50,0.6);"></div> <!-- Dark overlay for readability -->
               <div style="position:relative; z-index:2;">
-                <div style="font-size:22px;color:var(--white);margin-bottom:8px">🪔 ✦ 🪔</div>
-                <div style="font-size:20px;margin:9px 0;color:var(--white);font-weight:bold;padding:0 10px;">Hearty welcome to our wedding</div>
+                <div style="font-size:22px;margin:9px 0;color:var(--white);font-weight:bold;padding:0 10px;text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Hearty welcome to our wedding</div>
               </div>
             </div>
             
@@ -519,18 +509,20 @@
       gradient.addColorStop(1, "#3b2d5c");
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, w, h);
-      ctx.strokeStyle = "rgba(255,255,255,.8)";
+      
+      // The Scratch Layer Text
+      ctx.strokeStyle = "rgba(255,255,255,.5)";
       ctx.lineWidth = 1;
       ctx.strokeRect(9, 9, w - 18, h - 18);
       ctx.fillStyle = "#ffffff";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
+      
       ctx.font = "26px Georgia, serif";
       ctx.fillText("✦", w / 2, h / 2 - 26);
       ctx.font = "bold 13px Arial, sans-serif";
       ctx.fillText("SCRATCH TO REVEAL", w / 2, h / 2 + 1);
-      ctx.font = "12px Arial, sans-serif";
-      ctx.fillText("A special invitation awaits", w / 2, h / 2 + 25);
+      
       ctx.globalCompositeOperation = "destination-out";
     }
 

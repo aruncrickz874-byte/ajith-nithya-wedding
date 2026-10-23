@@ -66,14 +66,24 @@
       <div class="day">Save the date</div>
       <div class="date">7 February 2027</div>
       <div class="day">Sunday</div>
-      <div class="day" style="margin-top:16px">Reception</div>
-      <div class="date" style="font-size:22px">5:00 PM – 8:00 PM</div>
-      <section class="venue" aria-label="Wedding venue">
+      <section class="venue" aria-label="Wedding ceremony details">
+        <div class="ornament">✦</div>
+        <h2>Wedding Muhurtham</h2>
+        <p><strong>10:00 AM – 11:00 AM</strong></p>
+        <p>DS Auditorium, Kothakurussi</p>
+        <p>Palakkad, Kerala</p>
+        <div class="actions">
+          <a class="btn secondary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=DS+Auditorium+Kothakurussi+Palakkad+Kerala">Get Wedding Directions</a>
+        </div>
+      </section>
+      <section class="venue" aria-label="Wedding reception details">
         <div class="ornament">⌖</div>
-        <h2>DS Auditorium</h2>
+        <h2>Wedding Reception</h2>
+        <p><strong>5:00 PM – 8:00 PM</strong></p>
+        <p>Kizhakkekkara Auditorium</p>
         <p>Mangalamkunnu, Palakkad, Kerala</p>
         <div class="actions">
-          <a class="btn secondary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=DS+Auditorium+Mangalamkunnu+Palakkad+Kerala">Get Directions</a>
+          <a class="btn secondary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kizhakkekkara+Auditorium+Mangalamkunnu+Palakkad+Kerala">Get Reception Directions</a>
         </div>
       </section>
       <section class="countdown" aria-label="Countdown to wedding">
@@ -129,8 +139,8 @@
   </div>
 </div>
 <script>
-  // Wedding date. No ceremony time is displayed or assumed.
-  const weddingDate = new Date(2027, 1, 7, 0, 0, 0);
+  // Countdown to the wedding muhurtham on 7 February 2027 at 10:00 AM.
+  const weddingDate = new Date(2027, 1, 7, 10, 0, 0);
   function updateCountdown(){
     const diff = weddingDate.getTime() - Date.now();
     if(diff <= 0){

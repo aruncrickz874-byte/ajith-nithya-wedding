@@ -43,7 +43,7 @@
 
   main{padding:0;position:relative;z-index:1;flex:1;display:flex;flex-direction:column}
 
-  /* Page by Page Stacking System */
+  /* Stacking Page System */
   .page-slide{
     display: none;
     padding: 34px 22px 38px;
@@ -52,9 +52,7 @@
     background: var(--white);
     animation: slideDownFade .8s cubic-bezier(.22,.61,.36,1) both;
   }
-  .page-slide.active {
-    display: block;
-  }
+  .page-slide.active { display: block; }
   
   @keyframes slideDownFade {
     0% { opacity: 0; transform: translateY(-30px); filter: blur(8px); }
@@ -76,7 +74,6 @@
   /* Text Elements */
   .ornament{color:var(--lav);letter-spacing:.45em;font-size:17px}
   .invite{max-width:500px;margin:14px auto 26px;font-size:18px;line-height:1.7}
-  .date{font-size:clamp(24px,5vw,34px);color:var(--lavdeep);margin:18px 0 8px}
   .day{font:12px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
   
   .venue{margin:28px auto 22px;padding:20px 12px;border-top:1px solid var(--lav);border-bottom:1px solid var(--lav);max-width:470px}
@@ -111,12 +108,41 @@
   .music-toggle{position:fixed;bottom:18px;right:18px;z-index:999;width:46px;height:46px;border-radius:50%;border:1px solid var(--lavdeep);background:var(--white);color:var(--lavdeep);font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(59,45,92,.40);transition:transform .2s,background .2s;display:flex;align-items:center;justify-content:center}
   .music-toggle:hover{transform:scale(1.08);background:var(--lavlight)}
 
-  .photo-gallery-section{max-width:500px;margin:30px auto 0;padding:22px;background:var(--white);border:1px solid var(--lav);text-align:center}
-  .photo-gallery-section h3{font-weight:normal;color:var(--lavdeep);font-size:25px;margin:0 0 10px}
-  .photo-gallery{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
-  .photo-gallery img{width:130px;height:130px;object-fit:cover;border:1px solid var(--lavdeep);border-radius:4px;transition:transform .3s ease}
-  .photo-gallery img:hover{transform:scale(1.05)}
-  .upload-btn-row{margin-top:14px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+  /* Aesthetic Photo Grid */
+  .photo-gallery-section{
+    max-width: 100%; 
+    margin: 20px auto 0;
+  }
+  .photo-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    gap: 12px;
+    margin-top: 20px;
+  }
+  /* Make the first image full width to look like a mosaic */
+  .photo-gallery img:first-child {
+    grid-column: 1 / -1;
+    height: 220px;
+  }
+  .photo-gallery img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid var(--white);
+    box-shadow: 0 4px 10px rgba(59,45,92,.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .photo-gallery img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(59,45,92,.3);
+  }
+
+  @media(min-width: 600px) {
+    .photo-gallery { gap: 16px; }
+    .photo-gallery img { height: 200px; }
+    .photo-gallery img:first-child { height: 300px; }
+  }
 
   .welcome-screen{text-align:center}
   .welcome-screen .invite{font-size:17px;margin-bottom:22px}
@@ -141,7 +167,7 @@
     
     <main id="mainContent">
 
-      <!-- PAGE 1 (Stays visible at the top) -->
+      <!-- PAGE 1 -->
       <div class="page-slide active" id="page1">
         <div class="welcome-screen">
           <div class="ornament">✦ ❧ ✦</div>
@@ -220,30 +246,22 @@
         </div>
       </div>
 
-      <!-- PAGE 6 -->
+      <!-- PAGE 6 (Aesthetic Photo Gallery) -->
       <div class="page-slide" id="page6">
         <section class="photo-gallery-section">
           <div class="ornament">📸</div>
-          <h3>Our Moments</h3>
-          <p class="note" style="margin:0 0 14px">A few cherished memories of Ajith &amp; Nithya.</p>
+          <h3 style="font-weight:normal;color:var(--lavdeep);font-size:25px;margin:10px 0">Our Moments</h3>
+          <p class="note" style="margin:0 0 10px">A few cherished memories of Ajith &amp; Nithya.</p>
 
-          <input type="file" id="photoInput" accept="image/*" multiple style="display:none">
-
-          <div class="photo-gallery" id="photoGallery">
+          <div class="photo-gallery">
             <img src="photo1.jpeg" alt="Couple photo 1">
             <img src="photo2.jpeg" alt="Couple photo 2">
             <img src="photo3.jpeg" alt="Couple photo 3">
             <img src="photo4.jpeg" alt="Couple photo 4">
             <img src="photo5.jpeg" alt="Couple photo 5">
           </div>
-
-          <div class="upload-btn-row">
-            <button class="btn secondary" id="choosePhotosBtn" type="button">Choose Photos from Device</button>
-            <button class="btn secondary" id="clearPhotosBtn" type="button">Reset Gallery</button>
-          </div>
-          <p class="note" style="margin-top:10px">Photos appear instantly in the gallery — this preview is local to your browser.</p>
         </section>
-        <div class="actions">
+        <div class="actions" style="margin-top:30px">
           <button class="btn" type="button" data-next="page7">Surprise →</button>
         </div>
       </div>
@@ -309,11 +327,55 @@
     }
   })();
 
+  // ---------- Music Logic ----------
+  const musicToggle = document.getElementById('musicToggle');
+  const bgMusic     = document.getElementById('bgMusic');
+  const START_TIME = 121;   // 2:01
+  const END_TIME   = 170;   // 2:50
+  let playing = false;
+
+  bgMusic.addEventListener('loadedmetadata', () => {
+    bgMusic.currentTime = START_TIME;
+  });
+
+  bgMusic.addEventListener('timeupdate', () => {
+    if (bgMusic.currentTime >= END_TIME) {
+      bgMusic.currentTime = START_TIME;
+      bgMusic.play();
+    }
+  });
+
+  function playMusic() {
+    if(playing) return;
+    bgMusic.volume = 0.35;
+    if (bgMusic.currentTime < START_TIME || bgMusic.currentTime >= END_TIME) {
+      bgMusic.currentTime = START_TIME;
+    }
+    bgMusic.play().then(() => {
+      musicToggle.textContent = '🔇';
+      musicToggle.title = 'Pause background music';
+      playing = true;
+    }).catch(() => {
+      // Autoplay blocked
+    });
+  }
+
+  musicToggle.addEventListener('click', function(){
+    if (playing) {
+      bgMusic.pause();
+      musicToggle.textContent = '🎵';
+      musicToggle.title = 'Play background music';
+      playing = false;
+    } else {
+      playMusic();
+    }
+  });
+
   // ---------- Stacking Page Navigation ----------
   document.getElementById('startBtn').addEventListener('click', function(){ 
+    playMusic(); // Trigger music on user gesture!
     const p2 = document.getElementById('page2');
     p2.classList.add('active');
-    // Smoothly scroll down to reveal page 2, keeping page 1 visible above
     setTimeout(() => {
       window.scrollBy({ top: p2.offsetHeight, behavior: 'smooth' });
     }, 100);
@@ -331,37 +393,6 @@
       }
     });
   });
-
-  // ---------- Photo Upload ----------
-  (function setupPhotoUpload(){
-    const gallery = document.getElementById('photoGallery');
-    const input = document.getElementById('photoInput');
-    const chooseBtn = document.getElementById('choosePhotosBtn');
-    const clearBtn = document.getElementById('clearPhotosBtn');
-    const originalHTML = gallery.innerHTML;
-
-    chooseBtn.addEventListener('click', () => input.click());
-
-    input.addEventListener('change', function(){
-      const files = Array.from(this.files).slice(0, 12);
-      files.forEach(file => {
-        if (!file.type.startsWith('image/')) return;
-        const reader = new FileReader();
-        reader.onload = function(e){
-          const img = document.createElement('img');
-          img.src = e.target.result;
-          img.alt = file.name;
-          gallery.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-      });
-      input.value = '';
-    });
-
-    clearBtn.addEventListener('click', function(){
-      gallery.innerHTML = originalHTML;
-    });
-  })();
 
   // ---------- Countdown ----------
   const weddingDate = new Date(2027, 1, 7, 10, 0, 0);
@@ -485,57 +516,6 @@
       }
     } catch(err) { /* cancelled */ }
   });
-
-  // ---------- Music toggle with segment 2:01 → 2:50 ----------
-  (function setupMusic(){
-    const musicToggle = document.getElementById('musicToggle');
-    const bgMusic     = document.getElementById('bgMusic');
-
-    const START_TIME = 121;   // 2 min 01 sec
-    const END_TIME   = 170;   // 2 min 50 sec
-    const LOOP       = true;  
-
-    let playing = false;
-
-    bgMusic.addEventListener('loadedmetadata', () => {
-      bgMusic.currentTime = START_TIME;
-    });
-
-    bgMusic.addEventListener('timeupdate', () => {
-      if (bgMusic.currentTime >= END_TIME) {
-        if (LOOP) {
-          bgMusic.currentTime = START_TIME;
-          bgMusic.play();
-        } else {
-          bgMusic.pause();
-          musicToggle.textContent = '🎵';
-          musicToggle.title = 'Play background music';
-          playing = false;
-        }
-      }
-    });
-
-    musicToggle.addEventListener('click', function(){
-      if (playing) {
-        bgMusic.pause();
-        musicToggle.textContent = '🎵';
-        musicToggle.title = 'Play background music';
-        playing = false;
-      } else {
-        bgMusic.volume = 0.35;
-        if (bgMusic.currentTime < START_TIME || bgMusic.currentTime >= END_TIME) {
-          bgMusic.currentTime = START_TIME;
-        }
-        bgMusic.play().then(() => {
-          musicToggle.textContent = '🔇';
-          musicToggle.title = 'Pause background music';
-          playing = true;
-        }).catch(() => {
-          alert('Unable to play audio. Please check your browser audio settings or replace the music source.');
-        });
-      }
-    });
-  })();
 </script>
 </body>
 </html>

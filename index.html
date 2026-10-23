@@ -17,8 +17,10 @@
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{margin:0;background:var(--white);color:var(--ink);font-family:Georgia,"Times New Roman",serif;position:relative;overflow-x:hidden}
+  
   .page{min-height:100vh;padding:18px;background:radial-gradient(ellipse at top,rgba(94,74,138,.20),transparent 48%),var(--white);position:relative;z-index:1}
 
+  /* Floating hearts */
   .hearts-overlay{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}
   .hearts-overlay span{position:absolute;top:-12vh;color:#e63946;opacity:0;animation-name:heartFall;animation-timing-function:linear;animation-iteration-count:infinite;will-change:transform,opacity;user-select:none;text-shadow:0 0 6px rgba(230,57,70,.30)}
   @keyframes heartFall{
@@ -27,8 +29,9 @@
     100%{ transform:translateY(112vh) rotate(360deg) scale(1); opacity:0; }
   }
 
-  .frame{max-width:760px;margin:0 auto;border:1px solid var(--lav);outline:1px solid rgba(94,74,138,.45);outline-offset:5px;position:relative;overflow:hidden;background:var(--white);min-height:70vh;display:flex;flex-direction:column;transition:background .6s ease}
-  .frame:before,.frame:after{content:"❧";position:absolute;color:var(--lav);font-size:52px;opacity:.85;top:10px;z-index:2}
+  /* Frame */
+  .frame{max-width:760px;margin:0 auto;border:1px solid var(--lav);outline:1px solid rgba(94,74,138,.45);outline-offset:5px;position:relative;background:var(--white);min-height:70vh;display:flex;flex-direction:column;transition:background .6s ease}
+  .frame:before,.frame:after{content:"❧";position:absolute;color:var(--lav);font-size:52px;opacity:.85;top:10px;z-index:2;pointer-events:none}
   .frame:before{left:14px}.frame:after{right:14px;transform:scaleX(-1)}
 
   header{text-align:center;background:var(--lavdeep);color:var(--white);padding:54px 22px 46px;position:relative;z-index:1}
@@ -38,31 +41,65 @@
   .amp{font-style:italic;color:#d6c8f0;font-size:.72em}
   .subtitle{font:12px Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase;margin-top:20px;color:#e0d8f0}
 
-  main{padding:34px 22px 38px;text-align:center;position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;transition:background .6s ease;background:var(--white)}
+  main{padding:0;position:relative;z-index:1;flex:1;display:flex;flex-direction:column}
+
+  /* Page by Page Stacking System */
+  .page-slide{
+    display: none;
+    padding: 34px 22px 38px;
+    text-align: center;
+    border-bottom: 2px dashed var(--lav);
+    background: var(--white);
+    animation: slideDownFade .8s cubic-bezier(.22,.61,.36,1) both;
+  }
+  .page-slide.active {
+    display: block;
+  }
+  
+  @keyframes slideDownFade {
+    0% { opacity: 0; transform: translateY(-30px); filter: blur(8px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  @media(min-width:600px){ .page-slide{padding:42px 42px 48px} header{padding-top:64px;padding-bottom:54px} }
+
+  /* Alternate Backgrounds */
+  #page1 { background: var(--white); }
+  #page2 { background: var(--lavlight); }
+  #page3 { background: var(--white); }
+  #page4 { background: var(--lavlight); }
+  #page5 { background: var(--white); }
+  #page6 { background: var(--lavlight); }
+  #page7 { background: var(--white); }
+  #page8 { background: var(--lavlight); border-bottom: none; }
+
+  /* Text Elements */
   .ornament{color:var(--lav);letter-spacing:.45em;font-size:17px}
   .invite{max-width:500px;margin:14px auto 26px;font-size:18px;line-height:1.7}
   .date{font-size:clamp(24px,5vw,34px);color:var(--lavdeep);margin:18px 0 8px}
   .day{font:12px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  
   .venue{margin:28px auto 22px;padding:20px 12px;border-top:1px solid var(--lav);border-bottom:1px solid var(--lav);max-width:470px}
   .venue h2{font-weight:normal;color:var(--lavdeep);font-size:27px;margin:8px 0}
   .venue p{margin:5px 0;color:var(--muted);font:14px Arial,sans-serif;line-height:1.5}
+  
   .countdown{margin:26px auto 28px}
   .countdown h3{font-weight:normal;color:var(--lavdeep);font-size:25px;margin:0 0 14px}
   .timer{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-  .timebox{min-width:68px;padding:12px 8px;background:var(--lavlight);border:1px solid var(--lav)}
+  .timebox{min-width:68px;padding:12px 8px;background:var(--white);border:1px solid var(--lav)}
   .timebox strong{display:block;font-size:25px;color:var(--lavdeep);font-weight:normal}
   .timebox span{font:10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+  
   .actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px 0}
   .btn{display:inline-block;padding:13px 18px;border:1px solid var(--lavdeep);background:var(--lavdeep);color:var(--white);text-decoration:none;font:12px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s}
   .btn:hover{background:var(--lav);transform:translateY(-1px)}
   .btn.secondary{background:var(--white);color:var(--lavdeep)}
   .btn.secondary:hover{background:var(--lavlight)}
+  
   .note{font:12px/1.5 Arial,sans-serif;color:var(--muted);text-align:center;margin:12px 0 0}
 
   footer{text-align:center;background:var(--lavdeep);color:#e0d8f0;padding:22px 18px;font:11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;position:relative;z-index:1}
   .tiny{font-size:10px;letter-spacing:.04em;text-transform:none;opacity:.9;margin-top:8px;color:#e0d8f0}
-
-  @media(min-width:600px){main{padding:42px 42px 48px}header{padding-top:64px;padding-bottom:54px}}
 
   @keyframes softPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
   .lamp{animation:softPulse 3.5s ease-in-out infinite;display:inline-block}
@@ -81,37 +118,7 @@
   .photo-gallery img:hover{transform:scale(1.05)}
   .upload-btn-row{margin-top:14px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 
-  .page-slide{display:none}
-  .page-slide.active{display:block;animation:blurIn .6s cubic-bezier(.22,.61,.36,1) both}
-  @keyframes blurIn{
-    0%{opacity:0;transform:translateY(30px) scale(.98);filter:blur(8px)}
-    60%{filter:blur(2px)}
-    100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
-  }
-  @keyframes blurOut{
-    0%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
-    100%{opacity:0;transform:translateY(-20px) scale(.98);filter:blur(8px)}
-  }
-
-  .frame.bg-page1{background:var(--white)}
-  .frame.bg-page2{background:var(--lavlight)}
-  .frame.bg-page3{background:var(--white)}
-  .frame.bg-page4{background:var(--lavlight)}
-  .frame.bg-page5{background:var(--white)}
-  .frame.bg-page6{background:var(--lavlight)}
-  .frame.bg-page7{background:var(--white)}
-  .frame.bg-page8{background:var(--lavlight)}
-
-  main.bg-page1{background:var(--white)}
-  main.bg-page2{background:var(--lavlight)}
-  main.bg-page3{background:var(--white)}
-  main.bg-page4{background:var(--lavlight)}
-  main.bg-page5{background:var(--white)}
-  main.bg-page6{background:var(--lavlight)}
-  main.bg-page7{background:var(--white)}
-  main.bg-page8{background:var(--lavlight)}
-
-  .welcome-screen{text-align:center;padding:40px 22px 30px}
+  .welcome-screen{text-align:center}
   .welcome-screen .invite{font-size:17px;margin-bottom:22px}
   .welcome-screen .welcome-title{font-size:clamp(26px,5vw,36px);color:var(--lavdeep);margin:18px 0 10px;font-weight:normal}
   .welcome-screen .welcome-sub{font:13px/1.6 Arial,sans-serif;color:var(--muted);max-width:380px;margin:0 auto 24px}
@@ -123,7 +130,7 @@
 <div class="hearts-overlay" id="heartsOverlay" aria-hidden="true"></div>
 
 <div class="page">
-  <div class="frame" id="mainFrame">
+  <div class="frame">
     <header>
       <div class="eyebrow">With the blessings of our families</div>
       <div class="lamp" aria-hidden="true">🪔</div>
@@ -131,9 +138,10 @@
       <h1>Ajith <span class="amp">&</span><br>Nithya</h1>
       <div class="subtitle">Wedding Invitation</div>
     </header>
+    
     <main id="mainContent">
 
-      <!-- PAGE 1: WELCOME -->
+      <!-- PAGE 1 (Stays visible at the top) -->
       <div class="page-slide active" id="page1">
         <div class="welcome-screen">
           <div class="ornament">✦ ❧ ✦</div>
@@ -150,7 +158,7 @@
         </div>
       </div>
 
-      <!-- PAGE 2: MUHURTHAM -->
+      <!-- PAGE 2 -->
       <div class="page-slide" id="page2">
         <div class="ornament">🔱</div>
         <h2 style="font-weight:normal;color:var(--lavdeep);font-size:27px;margin:10px 0 6px">Muhurtham</h2>
@@ -166,7 +174,7 @@
         </div>
       </div>
 
-      <!-- PAGE 3: WEDDING FUNCTION -->
+      <!-- PAGE 3 -->
       <div class="page-slide" id="page3">
         <div class="ornament">✦</div>
         <h2 style="font-weight:normal;color:var(--lavdeep);font-size:27px;margin:10px 0 6px">Wedding Function</h2>
@@ -181,7 +189,7 @@
         </div>
       </div>
 
-      <!-- PAGE 4: RECEPTION -->
+      <!-- PAGE 4 -->
       <div class="page-slide" id="page4">
         <div class="ornament">⌖</div>
         <h2 style="font-weight:normal;color:var(--lavdeep);font-size:27px;margin:10px 0 6px">Wedding Reception</h2>
@@ -197,7 +205,7 @@
         </div>
       </div>
 
-      <!-- PAGE 5: COUNTDOWN -->
+      <!-- PAGE 5 -->
       <div class="page-slide" id="page5">
         <div class="ornament">✦ ❧ ✦</div>
         <h3 style="font-weight:normal;color:var(--lavdeep);font-size:25px;margin:14px 0">Counting the moments</h3>
@@ -212,7 +220,7 @@
         </div>
       </div>
 
-      <!-- PAGE 6: PHOTO GALLERY -->
+      <!-- PAGE 6 -->
       <div class="page-slide" id="page6">
         <section class="photo-gallery-section">
           <div class="ornament">📸</div>
@@ -221,7 +229,6 @@
 
           <input type="file" id="photoInput" accept="image/*" multiple style="display:none">
 
-          <!-- Photos are now set to .jpeg -->
           <div class="photo-gallery" id="photoGallery">
             <img src="photo1.jpeg" alt="Couple photo 1">
             <img src="photo2.jpeg" alt="Couple photo 2">
@@ -241,7 +248,7 @@
         </div>
       </div>
 
-      <!-- PAGE 7: SCRATCH -->
+      <!-- PAGE 7 -->
       <div class="page-slide" id="page7">
         <div class="ornament">✦ ❧ ✦</div>
         <h3 style="font-weight:normal;color:var(--lavdeep);font-size:25px;margin:12px 0">A little surprise for you</h3>
@@ -260,7 +267,7 @@
         </div>
       </div>
 
-      <!-- PAGE 8: SHARE / FINAL -->
+      <!-- PAGE 8 -->
       <div class="page-slide" id="page8">
         <div class="ornament">❧ ✦ ❧</div>
         <h3 style="font-weight:normal;color:var(--lavdeep);font-size:26px;margin:14px 0 8px">With love &amp; blessings</h3>
@@ -302,57 +309,30 @@
     }
   })();
 
-  // ---------- Page navigation ----------
-  const pageIds = ['page1','page2','page3','page4','page5','page6','page7','page8'];
-  const frame = document.getElementById('mainFrame');
-  const mainContent = document.getElementById('mainContent');
-  let currentPage = 1;
+  // ---------- Stacking Page Navigation ----------
+  document.getElementById('startBtn').addEventListener('click', function(){ 
+    const p2 = document.getElementById('page2');
+    p2.classList.add('active');
+    // Smoothly scroll down to reveal page 2, keeping page 1 visible above
+    setTimeout(() => {
+      window.scrollBy({ top: p2.offsetHeight, behavior: 'smooth' });
+    }, 100);
+  });
 
-  function setBackgrounds(n){
-    frame.className = 'frame';
-    mainContent.className = 'main-content';
-    frame.classList.add('bg-page' + n);
-    mainContent.classList.add('bg-page' + n);
-  }
-
-  function showPage(n){
-    if (n < 1 || n > pageIds.length) return;
-    const currentEl = document.getElementById(pageIds[currentPage-1]);
-    if (currentEl) {
-      currentEl.style.animation = 'blurOut .3s ease forwards';
-      setTimeout(() => {
-        currentEl.style.animation = '';
-        currentEl.classList.remove('active');
-        const target = document.getElementById(pageIds[n-1]);
-        if (target) {
-          target.classList.add('active');
-          setBackgrounds(n);
-          currentPage = n;
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }, 280);
-    } else {
-      const target = document.getElementById(pageIds[n-1]);
-      if (target) {
-        target.classList.add('active');
-        setBackgrounds(n);
-        currentPage = n;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
-  }
-
-  document.getElementById('startBtn').addEventListener('click', function(){ showPage(2); });
   document.querySelectorAll('[data-next]').forEach(btn => {
     btn.addEventListener('click', function(){
       const nextId = this.getAttribute('data-next');
-      const idx = pageIds.indexOf(nextId);
-      if (idx !== -1) showPage(idx + 1);
+      const target = document.getElementById(nextId);
+      if (target) {
+        target.classList.add('active');
+        setTimeout(() => {
+          window.scrollBy({ top: target.offsetHeight, behavior: 'smooth' });
+        }, 100);
+      }
     });
   });
-  setBackgrounds(1);
 
-  // ---------- IN-PAGE PHOTO UPLOAD ----------
+  // ---------- Photo Upload ----------
   (function setupPhotoUpload(){
     const gallery = document.getElementById('photoGallery');
     const input = document.getElementById('photoInput');
@@ -483,11 +463,10 @@
     const page7 = document.getElementById('page7');
     if (page7) {
       const mo = new MutationObserver(() => {
-        if (page7.classList.contains('active') && !revealed) setTimeout(drawCover, 60);
+        if (page7.classList.contains('active') && !revealed) setTimeout(drawCover, 200);
       });
       mo.observe(page7, { attributes: true, attributeFilter: ['class'] });
     }
-    if (page7 && page7.classList.contains('active')) drawCover();
     window.addEventListener("resize", () => { if(!revealed) drawCover(); });
   })();
 
@@ -512,10 +491,9 @@
     const musicToggle = document.getElementById('musicToggle');
     const bgMusic     = document.getElementById('bgMusic');
 
-    // ── Song segment: 2:01 → 2:50 ──
     const START_TIME = 121;   // 2 min 01 sec
     const END_TIME   = 170;   // 2 min 50 sec
-    const LOOP       = true;  // set false if you want it to play only once
+    const LOOP       = true;  
 
     let playing = false;
 

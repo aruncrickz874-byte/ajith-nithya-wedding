@@ -18,21 +18,21 @@
   html{scroll-behavior:smooth}
   body{margin:0;background:var(--white);color:var(--ink);font-family:Georgia,"Times New Roman",serif;position:relative;overflow-x:hidden}
   
-  /* Styling for the Malayalam Text Images */
+  /* Styling for the Malayalam Text Images (Made Much Larger) */
   .malayalam-img {
     display: block;
-    margin: 15px auto;
-    height: 70px; /* Adjust this if you want the text bigger/smaller */
+    margin: 20px auto;
+    height: 160px; /* Increased size significantly */
     width: auto;
-    max-width: 90%;
+    max-width: 100%;
     object-fit: contain;
-    filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.6)); /* Adds a soft shadow so it shows up on any background */
+    filter: drop-shadow(0px 6px 12px rgba(0,0,0,0.8)); /* Strong shadow so it pops on any background */
   }
 
   /* Om Symbol Styling */
   .om-symbol {
-    font-size: 38px;
-    color: #ffd700; /* Beautiful gold color */
+    font-size: 32px;
+    color: #ffd700; 
     text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     display: inline-block;
     margin-bottom: 5px;
@@ -109,7 +109,7 @@
   @media(min-width:600px){ .page-slide{padding:42px 42px 48px} header{padding-top:64px;padding-bottom:54px} }
 
   /* Text Elements */
-  .ornament{color:var(--white);letter-spacing:.45em;font-size:17px;font-weight:bold;text-shadow: 0 2px 4px rgba(0,0,0,0.5);}
+  .ornament{color:var(--white);letter-spacing:.45em;font-size:17px;font-weight:bold;text-shadow: 0 2px 4px rgba(0,0,0,0.5); display:inline-block;}
   .invite{max-width:500px;margin:14px auto 26px;font-size:18px;line-height:1.7;font-weight:bold;color:var(--white);text-shadow: 0 2px 4px rgba(0,0,0,0.5);}
   .day{font:12px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--white);font-weight:bold;text-shadow: 0 1px 3px rgba(0,0,0,0.5);}
   
@@ -249,7 +249,7 @@
       <div class="page-slide" id="page2">
         <div class="venue">
           <div class="om-symbol">ॐ</div>
-          <!-- Using your uploaded image for Thalikett -->
+          <!-- Thalikett Image -->
           <img src="thalikett.png" alt="താലികെട്ട്" class="malayalam-img">
           <p class="day" style="margin-top:0">Pattarkonam Shiva Temple</p>
           <p>Ananganadi, Palakkad, Kerala</p>
@@ -267,8 +267,8 @@
       <!-- PAGE 3: KALYANAM -->
       <div class="page-slide" id="page3">
         <div class="venue">
-          <div class="ornament">✦</div>
-          <!-- Using your uploaded image for Kalyanam -->
+          <div class="ornament">👩‍❤️‍👨</div>
+          <!-- Kalyanam Image -->
           <img src="kalyanam.png" alt="കല്യാണം" class="malayalam-img">
           <p class="day" style="margin-top:0">DS Auditorium, Kothakurussi</p>
           <p>Palakkad, Kerala</p>
@@ -340,7 +340,7 @@
       <!-- PAGE 7 -->
       <div class="page-slide" id="page7">
         <div class="venue">
-          <div class="ornament">✦ ❧ ✦</div>
+          <div class="ornament">👩‍❤️‍👨</div>
           <h3 style="font-weight:normal;color:var(--white);font-size:25px;margin:12px 0;font-weight:bold;">A little surprise for you</h3>
           <p style="font:14px/1.6 Arial,sans-serif;color:var(--white);margin:0 auto 16px;max-width:360px;font-weight:bold;">Scratch the card below to reveal your invitation.</p>
           <div id="scratchCard" style="position:relative;max-width:420px;height:190px;margin:0 auto;border:1px solid var(--lavdeep);overflow:hidden;background:var(--lavdeep);touch-action:none">

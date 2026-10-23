@@ -18,15 +18,34 @@
   html{scroll-behavior:smooth}
   body{margin:0;background:var(--white);color:var(--ink);font-family:Georgia,"Times New Roman",serif;position:relative;overflow-x:hidden}
   
+  /* Styling for the Malayalam Text Images */
+  .malayalam-img {
+    display: block;
+    margin: 15px auto;
+    height: 70px; /* Adjust this if you want the text bigger/smaller */
+    width: auto;
+    max-width: 90%;
+    object-fit: contain;
+    filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.6)); /* Adds a soft shadow so it shows up on any background */
+  }
+
+  /* Om Symbol Styling */
+  .om-symbol {
+    font-size: 38px;
+    color: #ffd700; /* Beautiful gold color */
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+
   /* --- BACKGROUND PHOTO --- */
   .page{
     min-height:100vh;
     padding:18px;
-    /* Put your background photo here. Make sure it is named background.jpeg */
     background-image: url('background.jpeg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Photo stays fixed, content scrolls over it */
+    background-attachment: fixed;
     position:relative;
     z-index:1;
   }
@@ -89,7 +108,7 @@
 
   @media(min-width:600px){ .page-slide{padding:42px 42px 48px} header{padding-top:64px;padding-bottom:54px} }
 
-  /* Text Elements with Glassmorphism Boxes so photo shows behind */
+  /* Text Elements */
   .ornament{color:var(--white);letter-spacing:.45em;font-size:17px;font-weight:bold;text-shadow: 0 2px 4px rgba(0,0,0,0.5);}
   .invite{max-width:500px;margin:14px auto 26px;font-size:18px;line-height:1.7;font-weight:bold;color:var(--white);text-shadow: 0 2px 4px rgba(0,0,0,0.5);}
   .day{font:12px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--white);font-weight:bold;text-shadow: 0 1px 3px rgba(0,0,0,0.5);}
@@ -226,11 +245,12 @@
         </div>
       </div>
 
-      <!-- PAGE 2 -->
+      <!-- PAGE 2: THALIKETT -->
       <div class="page-slide" id="page2">
         <div class="venue">
-          <div class="ornament">🔱</div>
-          <h2>Muhurtham</h2>
+          <div class="om-symbol">ॐ</div>
+          <!-- Using your uploaded image for Thalikett -->
+          <img src="thalikett.png" alt="താലികെട്ട്" class="malayalam-img">
           <p class="day" style="margin-top:0">Pattarkonam Shiva Temple</p>
           <p>Ananganadi, Palakkad, Kerala</p>
           <p style="color:var(--white);font-size:18px;margin:18px 0 6px;font-weight:bold;"><strong>10:00 AM – 11:00 AM</strong></p>
@@ -240,15 +260,16 @@
           <a class="btn-map" target="_blank" rel="noopener" title="Get Temple Directions" href="https://www.google.com/maps/search/?api=1&query=Pattarkonam+Shiva+Temple+Ananganadi+Palakkad+Kerala">
             <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           </a>
-          <button class="btn" type="button" data-next="page3">Wedding Function →</button>
+          <button class="btn" type="button" data-next="page3">Wedding Gathering →</button>
         </div>
       </div>
 
-      <!-- PAGE 3 -->
+      <!-- PAGE 3: KALYANAM -->
       <div class="page-slide" id="page3">
         <div class="venue">
           <div class="ornament">✦</div>
-          <h2>Wedding Function</h2>
+          <!-- Using your uploaded image for Kalyanam -->
+          <img src="kalyanam.png" alt="കല്യാണം" class="malayalam-img">
           <p class="day" style="margin-top:0">DS Auditorium, Kothakurussi</p>
           <p>Palakkad, Kerala</p>
           <p class="day" style="margin:16px 0 20px">7 February 2027 · Sunday</p>
@@ -292,7 +313,7 @@
           </div>
         </div>
         <div class="actions" style="margin-top:30px">
-          <button class="btn" type="button" data-next="page6">Our Photos →</button>
+          <button class="btn" type="button" data-next="page6">Captured Moments →</button>
         </div>
       </div>
 
@@ -300,7 +321,7 @@
       <div class="page-slide" id="page6">
         <section class="photo-gallery-section">
           <div class="ornament">📸</div>
-          <h3 style="font-weight:normal;color:var(--white);font-size:25px;margin:10px 0;font-weight:bold;">Our Moments</h3>
+          <h3 style="font-weight:normal;color:var(--white);font-size:25px;margin:10px 0;font-weight:bold;">Captured Moments</h3>
           <p class="note" style="margin:0 0 10px">A few cherished memories of Ajith &amp; Nithya.</p>
 
           <div class="photo-gallery">
@@ -557,7 +578,7 @@
   document.getElementById('shareBtn').addEventListener('click', async function(){
     const shareData = {
       title: "Ajith & Nithya — Wedding Invitation",
-      text: "You're warmly invited to celebrate Ajith & Nithya on Sunday, 7 February 2027. Muhurtham 10:00–11:00 AM at Pattarkonam Shiva Temple, Ananganadi. Wedding function at DS Auditorium, Kothakurussi. Reception 5:00–8:00 PM at Kizhakkekkara Auditorium, Mangalamkunnu, Palakkad.",
+      text: "You're warmly invited to celebrate Ajith & Nithya on Sunday, 7 February 2027. Thalikett 10:00–11:00 AM at Pattarkonam Shiva Temple, Ananganadi. Wedding Gathering at DS Auditorium, Kothakurussi. Reception 5:00–8:00 PM at Kizhakkekkara Auditorium, Mangalamkunnu, Palakkad.",
       url: window.location.href
     };
     try {
